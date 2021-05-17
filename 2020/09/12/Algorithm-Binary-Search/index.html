@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Algorithm-Binary-Search | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Algorithm-Binary-Search</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 12, 2020&nbsp;&nbsp;21:08:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Search/">Search</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Intro-to-Binary-Search"><a href="#Intro-to-Binary-Search" class="headerlink" title="Intro to Binary Search"></a>Intro to Binary Search</h2><p>
+Binary Search, probably the first algorithm that every programmer learns, appears everywhere in daily developing and algorithm contest. Despite its ominpresence, it is very easy to get confused with boundary and edge cases. To accommodate those edge cases and boundary issues, I, in this blog, am going to discuss the algorithm with 2 templates which are super effective and robust. 
+
+<p>The fundamental idea is simple and elegant. Imagine that we want to guess a random number from 1 to 100, and we get some feedback about whether the current guess is too big or too small. In this game, we can pick 50 as our initial guess, and drop half of the candidates based on the feedback that we received. </p>
+<p>Typically, there are 2 types of binary search problems that we could encounter in daily programming, and I will present 2 basic templates accordingly.</p>
+</p>
+
+<h2 id="Case-I-Guessing-Numbers"><a href="#Case-I-Guessing-Numbers" class="headerlink" title="Case I, Guessing Numbers"></a>Case I, Guessing Numbers</h2><p>False, False, False, True, False, False, False</p>
+<p>If we are dealing with such cases, the template could be written as below</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// we need to make sure that nums must be a non-zero length</span></span><br><span class="line"><span class="keyword">int</span> l = <span class="number">0</span>, h = nums1.size();</span><br><span class="line"><span class="keyword">while</span>(h &gt;= l)&#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (h - l) / <span class="number">2</span> + l;</span><br><span class="line">    <span class="keyword">if</span>(nums[mid] &gt; target)&#123;</span><br><span class="line">        h = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">        l = mid + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener">4. Median of Two Sorted Arrays</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums1.size() &gt; nums2.size())&#123;</span><br><span class="line">            swap(nums1, nums2);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> m = nums1.size(), n = nums2.size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, h = nums1.size();</span><br><span class="line">        <span class="keyword">while</span>(h &gt;= l)&#123;</span><br><span class="line">            <span class="keyword">int</span> partitionX = (h - l) / <span class="number">2</span> + l;</span><br><span class="line">            <span class="keyword">int</span> partitionY = (m + n + <span class="number">1</span>) / <span class="number">2</span> - partitionX;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> left_max_x = partitionX == <span class="number">0</span> ? INT_MIN : nums1[partitionX - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">int</span> right_min_x = partitionX == nums1.size() ? INT_MAX : nums1[partitionX];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> left_max_y = partitionY == <span class="number">0</span> ? INT_MIN : nums2[partitionY -  <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">int</span> right_min_y = partitionY == nums2.size() ? INT_MAX : nums2[partitionY];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(right_min_y &gt;= left_max_x </span><br><span class="line">              &amp;&amp; right_min_x &gt;= left_max_y)&#123;</span><br><span class="line">                <span class="keyword">if</span>((m + n)%<span class="number">2</span> == <span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> max(left_max_x, left_max_y);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> (<span class="keyword">double</span>)(max(left_max_x, left_max_y) + min(right_min_x, right_min_y)) / <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(right_min_y &lt; left_max_x)&#123;</span><br><span class="line">                h = partitionX - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                l = partitionX + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Case-II-Guessing-The-First-True"><a href="#Case-II-Guessing-The-First-True" class="headerlink" title="Case II, Guessing The First True"></a>Case II, Guessing The First True</h2><p>True, True, True, True, True, False, False, False, False, False</p>
+<p>Actually, this kind of problem is very common in programming, and I offer a special template here.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> l = <span class="number">0</span>, h = nums.size() - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// we make sure that f(l) = True,</span></span><br><span class="line"><span class="comment">// we make sure that f(h) = False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(h - <span class="number">1</span> &gt; l)&#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (h - l) / <span class="number">2</span> + l;</span><br><span class="line">    <span class="keyword">if</span>(f(nums[mid]))&#123;</span><br><span class="line">        l = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        r = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// invariant: we know that l is always true, and r is always false</span></span><br><span class="line"><span class="keyword">return</span> l;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p><a href="https://leetcode.com/problems/longest-common-prefix/" target="_blank" rel="noopener">14. Longest Common Prefix</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestCommonPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> shortest_idx = <span class="number">0</span>, shortest_length = INT_MAX;</span><br><span class="line">        <span class="keyword">if</span>(strs.size() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(strs[i].length() &lt; shortest_length)&#123;</span><br><span class="line">                shortest_idx = i;</span><br><span class="line">                shortest_length = strs[i].length();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// do the binary search to find the longest common prefix</span></span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, h = shortest_length;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="built_in">string</span> prefix = strs[shortest_idx].substr(<span class="number">0</span>, h);</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">bool</span> is_valid = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.size(); i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!start_with(prefix, strs[i]))&#123;</span><br><span class="line">                    is_valid = <span class="literal">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(is_valid)&#123;</span><br><span class="line">            <span class="keyword">return</span> strs[shortest_idx].substr(<span class="number">0</span>, h);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(h - <span class="number">1</span>&gt; l)&#123;</span><br><span class="line">            <span class="keyword">int</span> m = (h - l) / <span class="number">2</span> + l;</span><br><span class="line">            <span class="built_in">string</span> prefix = strs[shortest_idx].substr(<span class="number">0</span>, m);</span><br><span class="line">            <span class="keyword">bool</span> is_valid = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.size(); i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!start_with(prefix, strs[i]))&#123;</span><br><span class="line">                    is_valid = <span class="literal">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(is_valid)&#123;</span><br><span class="line">                l = m;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                h = m;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> strs.size() == <span class="number">1</span> ? strs[<span class="number">0</span>] : strs[shortest_idx].substr(<span class="number">0</span>, l);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">start_with</span><span class="params">(<span class="built_in">string</span> &amp;prefix, <span class="built_in">string</span>&amp; s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prefix.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] != prefix[i])</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Case-III-Lower-Bound-Implementation"><a href="#Case-III-Lower-Bound-Implementation" class="headerlink" title="Case III, Lower_Bound Implementation"></a>Case III, Lower_Bound Implementation</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lower_bound</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = nums.size() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (r - l ) / <span class="number">2</span> + l;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/12/Algorithm-Binary-Search/">http://haihao-sun.github.io/2020/09/12/Algorithm-Binary-Search/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Algorithm/"># Algorithm</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/13/Leetcode-Training-30-150/">Leetcode-Training-30/150</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/10/Leetcode-Training-27-150/">Leetcode-Training-27/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

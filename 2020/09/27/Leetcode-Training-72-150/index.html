@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-72/150  | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-72/150 </h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 27, 2020&nbsp;&nbsp;21:06:42</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://kingofcheats.com/wp-content/uploads/2019/07/8.-Latios.png" style="width:200px">
+
+
+<h2 id="Problem-Description-139-Word-Break-70-150-4-5"><a href="#Problem-Description-139-Word-Break-70-150-4-5" class="headerlink" title="Problem Description 139. Word Break | 70/150  | 4/5"></a>Problem Description <a href="https://leetcode.com/problems/word-break/" target="_blank" rel="noopener">139. Word Break</a> | 70/150  | 4/5</h2><p>
+Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+<p>Note:</p>
+<p>The same word in the dictionary may be reused multiple times in the segmentation.<br>You may assume the dictionary does not contain duplicate words.</p>
+<p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s &#x3D; &quot;leetcode&quot;, wordDict &#x3D; [&quot;leet&quot;, &quot;code&quot;]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Return true because &quot;leetcode&quot; can be segmented as &quot;leet code&quot;.</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-139-Word-Break-70-150-4-5"><a href="#Problem-Solution-139-Word-Break-70-150-4-5" class="headerlink" title="Problem Solution 139. Word Break | 70/150  | 4/5"></a>Problem Solution <a href="https://leetcode.com/problems/word-break/" target="_blank" rel="noopener">139. Word Break</a> | 70/150  | 4/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s: str, wordDict: List[str])</span> -&gt; bool:</span></span><br><span class="line">        m = len(s)</span><br><span class="line">        graph = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> range(m)]</span><br><span class="line">        wordDict = set(wordDict)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, m + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> s[i:j] <span class="keyword">in</span> wordDict:</span><br><span class="line">                    graph[i].append(j)</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        q = deque()</span><br><span class="line">        visited = [ <span class="literal">False</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(m + <span class="number">1</span>)]</span><br><span class="line">        q.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">while</span>(len(q)):</span><br><span class="line">            cur_idx = q.popleft()</span><br><span class="line">            <span class="keyword">if</span> cur_idx == m:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(graph[cur_idx])):</span><br><span class="line">                <span class="keyword">if</span> visited[graph[cur_idx][j]] == <span class="literal">False</span>:</span><br><span class="line">                    visited[graph[cur_idx][j]] = <span class="literal">True</span></span><br><span class="line">                    q.append(graph[cur_idx][j])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Caution-139-Word-Break-70-150-4-5"><a href="#Problem-Caution-139-Word-Break-70-150-4-5" class="headerlink" title="Problem Caution 139. Word Break | 70/150  | 4/5"></a>Problem Caution <a href="https://leetcode.com/problems/word-break/" target="_blank" rel="noopener">139. Word Break</a> | 70/150  | 4/5</h2><ul>
+<li>We can view this problem as a graph reachability problem where we start from index i, and we want to reach index m</li>
+<li>There is an edge from index i to index j if str[i:j] is in the wordDict</li>
+<li>O(m*m)</li>
+</ul>
+<h2 id="Problem-Description-140-Word-Break-II-71-150-3-5"><a href="#Problem-Description-140-Word-Break-II-71-150-3-5" class="headerlink" title="Problem Description 140. Word Break II | 71/150  | 3/5"></a>Problem Description <a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="noopener">140. Word Break II</a> | 71/150  | 3/5</h2><p>
+Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
+
+<p>Note:</p>
+<p>The same word in the dictionary may be reused multiple times in the segmentation.<br>You may assume the dictionary does not contain duplicate words.</p>
+<p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s &#x3D; &quot;catsanddog&quot;</span><br><span class="line">wordDict &#x3D; [&quot;cat&quot;, &quot;cats&quot;, &quot;and&quot;, &quot;sand&quot;, &quot;dog&quot;]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  &quot;cats and dog&quot;,</span><br><span class="line">  &quot;cat sand dog&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-140-Word-Break-II-71-150-3-5"><a href="#Problem-Solution-140-Word-Break-II-71-150-3-5" class="headerlink" title="Problem Solution 140. Word Break II | 71/150  | 3/5"></a>Problem Solution <a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="noopener">140. Word Break II</a> | 71/150  | 3/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s: str, wordDict: List[str])</span> -&gt; List[str]:</span></span><br><span class="line">        m = len(s)</span><br><span class="line">        wordDict = set(wordDict)</span><br><span class="line">        graph = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> range(m)]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, m + <span class="number">1</span>, <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> s[i:j] <span class="keyword">in</span> wordDict:</span><br><span class="line">                    graph[i].append(j)</span><br><span class="line"></span><br><span class="line">        global_ret = []</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">backtracking</span><span class="params">(idx, local_ret)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> idx == m:</span><br><span class="line">                global_ret.append(list(local_ret))</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> len(graph[idx]) == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> graph[idx]:</span><br><span class="line">                local_ret.append(s[idx:j])</span><br><span class="line">                backtracking(j, local_ret)</span><br><span class="line">                local_ret.pop()</span><br><span class="line">        </span><br><span class="line">        backtracking(<span class="number">0</span>, [])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> len(global_ret) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> global_ret</span><br><span class="line">        </span><br><span class="line">        global_ret = [<span class="string">' '</span>.join(sentence) <span class="keyword">for</span> sentence <span class="keyword">in</span> global_ret]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> global_ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SolutionImproved</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s: str, wordDict: List[str])</span> -&gt; List[str]:</span></span><br><span class="line">        m = len(s)</span><br><span class="line">        wordDict = set(wordDict)</span><br><span class="line">        graph = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> range(m)]</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        global_ret = []</span><br><span class="line">        memo = &#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">backtracking</span><span class="params">(cur_s)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> cur_s == <span class="string">""</span>:</span><br><span class="line">                <span class="keyword">return</span> [[]]</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> cur_s <span class="keyword">in</span> memo:</span><br><span class="line">                <span class="keyword">return</span> memo[cur_s]</span><br><span class="line">            </span><br><span class="line">            local_ret = []</span><br><span class="line">            <span class="keyword">for</span> idx <span class="keyword">in</span> range(<span class="number">1</span>, len(cur_s) + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> cur_s[<span class="number">0</span>: idx] <span class="keyword">in</span> wordDict:</span><br><span class="line">                    curr_ret = backtracking(cur_s[idx:])</span><br><span class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(curr_ret)):</span><br><span class="line">                        ret = list(curr_ret[i])</span><br><span class="line">                        ret.insert(<span class="number">0</span>, cur_s[<span class="number">0</span>:idx])</span><br><span class="line">                        local_ret.append(ret)</span><br><span class="line">            memo[cur_s] = local_ret</span><br><span class="line">            <span class="keyword">return</span> local_ret</span><br><span class="line">        </span><br><span class="line">        global_ret = backtracking(s)</span><br><span class="line">        global_ret = [<span class="string">' '</span>.join(sentence) <span class="keyword">for</span> sentence <span class="keyword">in</span> global_ret]</span><br><span class="line">        <span class="keyword">return</span> global_ret</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Caution-140-Word-Break-II-71-150-3-5"><a href="#Problem-Caution-140-Word-Break-II-71-150-3-5" class="headerlink" title="Problem Caution 140. Word Break II | 71/150  | 3/5"></a>Problem Caution <a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="noopener">140. Word Break II</a> | 71/150  | 3/5</h2><ul>
+<li>Originally, I view this problem as a backtracking DFS problem where I try different combinations and steps in each index, but got TLE</li>
+<li>A smarter way to do the DFS is memoization! -&gt; A very great and common technique to make optimization</li>
+<li>Won’t change the time complexity O(2^n) in the worse case scenario</li>
+</ul>
+<h2 id="Problem-Description-141-Linked-List-Cycle-72-150-4-5-5"><a href="#Problem-Description-141-Linked-List-Cycle-72-150-4-5-5" class="headerlink" title="Problem Description 141. Linked List Cycle | 72/150  | 4.5/5"></a>Problem Description <a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">141. Linked List Cycle</a> | 72/150  | 4.5/5</h2><p>
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+
+<p>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail’s next pointer is connected to. Note that pos is not passed as a parameter.</p>
+<p>Return true if there is a cycle in the linked list. Otherwise, return false.</p>
+<p>Follow up:</p>
+<p>Can you solve it using O(1) (i.e. constant) memory?</p>
+<p>
+
+<p>Example1:<br><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: head &#x3D; [3,2,0,-4], pos &#x3D; 1</span><br><span class="line">Output: true</span><br><span class="line">Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-141-Linked-List-Cycle-72-150-4-5-5"><a href="#Problem-Solution-141-Linked-List-Cycle-72-150-4-5-5" class="headerlink" title="Problem Solution 141. Linked List Cycle | 72/150  | 4.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">141. Linked List Cycle</a> | 72/150  | 4.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasCycle</span><span class="params">(self, head: ListNode)</span> -&gt; bool:</span></span><br><span class="line">        slow = head</span><br><span class="line">        fast = head</span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="literal">None</span> <span class="keyword">and</span> fast.next != <span class="literal">None</span>):</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            slow = slow.next</span><br><span class="line">            <span class="keyword">if</span> fast == slow:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Caution-141-Linked-List-Cycle-72-150-4-5-5"><a href="#Problem-Caution-141-Linked-List-Cycle-72-150-4-5-5" class="headerlink" title="Problem Caution 141. Linked List Cycle | 72/150  | 4.5/5"></a>Problem Caution <a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">141. Linked List Cycle</a> | 72/150  | 4.5/5</h2><ul>
+<li>Fast and Slow Pointer in linkedList is a common technique</li>
+<li>O(n)</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/27/Leetcode-Training-72-150/">http://haihao-sun.github.io/2020/09/27/Leetcode-Training-72-150/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode/"># training-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/28/Leetcode-Training-75-150/">Leetcode-Training-75/150</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/26/Leetcode-Training-69-150/">Leetcode-Training-69/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

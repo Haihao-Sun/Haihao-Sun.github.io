@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-983-Minimum-Cost-For-Tickets | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-983-Minimum-Cost-For-Tickets</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 1, 2020&nbsp;&nbsp;21:57:36</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/DP/">DP</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://vignette.wikia.nocookie.net/nin-fanon/images/7/71/258Mudkip2.png/revision/latest/scale-to-width-down/340?cb=20140203002412" style="width:200px;">
+
+<p><a href="https://leetcode.com/problems/minimum-cost-for-tickets/" target="_blank" rel="noopener">Leetcode-983-Minimum-Cost-For-Tickets</a></p>
+<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h2><p>
+In a country popular for train travel, you have planned some train travelling one year in advance.  The days of the year that you will travel is given as an array days.  Each day is an integer from 1 to 365.
+
+<p>Train tickets are sold in 3 different ways:</p>
+<p>a 1-day pass is sold for costs[0] dollars;<br>a 7-day pass is sold for costs[1] dollars;<br>a 30-day pass is sold for costs[2] dollars.<br>The passes allow that many days of consecutive travel.  For example, if we get a 7-day pass on day 2, then we can travel for 7 days: day 2, 3, 4, 5, 6, 7, and 8.</p>
+<p>Return the minimum number of dollars you need to travel every day in the given list of days.</p></p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: days &#x3D; [1,4,6,7,8,20], costs &#x3D; [2,7,15]</span><br><span class="line">Output: 11</span><br><span class="line">Explanation: </span><br><span class="line">For example, here is one way to buy passes that lets you travel your travel plan:</span><br><span class="line">On day 1, you bought a 1-day pass for costs[0] &#x3D; $2, which covered day 1.</span><br><span class="line">On day 3, you bought a 7-day pass for costs[1] &#x3D; $7, which covered days 3, 4, ..., 9.</span><br><span class="line">On day 20, you bought a 1-day pass for costs[0] &#x3D; $2, which covered day 20.</span><br><span class="line">In total you spent $11 and covered all the days of your travel.</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">mincostTickets</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; days, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; costs)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="Problem-Discussion"><a href="#Problem-Discussion" class="headerlink" title="Problem Discussion:"></a>Problem Discussion:</h2><h3 id="category-DP-Dynamic-Programming-gt-water-pokemon"><a href="#category-DP-Dynamic-Programming-gt-water-pokemon" class="headerlink" title="category: DP(Dynamic Programming) -&gt; water pokemon"></a>category: DP(Dynamic Programming) -&gt; water pokemon</h3><h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition:"></a>Intuition:</h3><p>
+It is not so hard to figure out that if we define dp[i] means the minimum cost to reach day i, it is clear that this is a 1-D DP.
+<br>
+
+</p>
+
+
+<h4 id="step1-Define-DP-state"><a href="#step1-Define-DP-state" class="headerlink" title="step1: Define DP state"></a>step1: Define DP state</h4><p>We simply define dp[i] means the minimum cost to reach day i.
+</p>
+
+
+<h4 id="step2-Seek-For-Transition-Function"><a href="#step2-Seek-For-Transition-Function" class="headerlink" title="step2: Seek For Transition Function"></a>step2: Seek For Transition Function</h4><p>
+There are threes ways from which we can reach dp[i]:
+    <ul>
+        <li>dp[i-1] + costs[0], purchase a 1-day pass ticket</li>
+        <li>dp[i-7] + costs[1], purchase a 7-day pass ticket</li>
+        <li>dp[i-30] + costs[2], purchase a 30-day pass ticket</li>
+    </ul>
+
+<p>We clearly pick the min among those three.</p>
+</p>
+
+
+<h2 id="Problem-Solution-CPP"><a href="#Problem-Solution-CPP" class="headerlink" title="Problem Solution CPP:"></a>Problem Solution CPP:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">mincostTickets</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; days, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; costs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max_day = days[days.size() - <span class="number">1</span>];</span><br><span class="line">        <span class="function"><span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; <span class="title">s</span><span class="params">(days.begin(), days.end())</span></span>;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(max_day + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= max_day; i++)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// [2,7,15]</span></span><br><span class="line">            <span class="keyword">int</span> solution_1 = dp[i<span class="number">-1</span>] + costs[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> solution_2 = i &gt;= <span class="number">7</span> ? dp[i<span class="number">-7</span>] + costs[<span class="number">1</span>] : costs[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">int</span> solution_3 = i &gt;= <span class="number">30</span> ? dp[i<span class="number">-30</span>] + costs[<span class="number">2</span>] : costs[<span class="number">2</span>];</span><br><span class="line">            <span class="keyword">if</span>(s.find(i) == s.end())</span><br><span class="line">                dp[i] = dp[i<span class="number">-1</span>];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[i] = min(solution_1, min(solution_2, solution_3));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[max_day];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-Solution-Python"><a href="#Problem-Solution-Python" class="headerlink" title="Problem Solution Python:"></a>Problem Solution Python:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> List</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mincostTickets</span><span class="params">(self, days: List[int], costs: List[int])</span> -&gt; int:</span></span><br><span class="line">        dp = [<span class="number">0</span>] * (days[<span class="number">-1</span>] + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(dp), <span class="number">1</span>):</span><br><span class="line">            solution_1 = dp[i<span class="number">-1</span>] + costs[<span class="number">0</span>]</span><br><span class="line">            solution_2 = costs[<span class="number">1</span>] + dp[i<span class="number">-7</span>] <span class="keyword">if</span> i &gt;= <span class="number">7</span> <span class="keyword">else</span> costs[<span class="number">1</span>]</span><br><span class="line">            solution_3 = costs[<span class="number">2</span>] + dp[i<span class="number">-30</span>] <span class="keyword">if</span> i &gt;= <span class="number">30</span> <span class="keyword">else</span> costs[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> days:</span><br><span class="line">                dp[i] = min(solution_1, solution_2, solution_3)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dp[i] = dp[i<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">return</span> dp[days[<span class="number">-1</span>]]</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/07/01/Leetcode-983-Minimum-Cost-For-Tickets/">http://haihao-sun.github.io/2020/07/01/Leetcode-983-Minimum-Cost-For-Tickets/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/tech-Leetcode/"># tech-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/07/02/Leetcode-1130-Minimum-Cost-Tree-From-leaf-Values/">Leetcode_1130_Minimum_Cost_Tree</a>
+            
+            
+            <a class="next" rel="next" href="/2020/06/30/Leetcode-518-Coin-Change-II/">Leetcode-518-Coin-Change-II</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

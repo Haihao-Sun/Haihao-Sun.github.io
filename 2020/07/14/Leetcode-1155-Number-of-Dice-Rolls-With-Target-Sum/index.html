@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-1155-Number-of-Dice-Rolls-With-Target-Sum | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-1155-Number-of-Dice-Rolls-With-Target-Sum</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 14, 2020&nbsp;&nbsp;23:09:37</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/DP/">DP</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://i.pinimg.com/originals/70/27/3d/70273d28d65516e6a418f864c916c941.png" style="width:200px;">
+
+
+<p><a href="https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/" target="_blank" rel="noopener">link to Leetcode-1155-Number-of-Dice-Rolls-With-Target-Sum</a></p>
+<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h2><p>You have d dice, and each die has f faces numbered 1, 2, ..., f.
+
+<p>Return the number of possible ways (out of fd total ways) modulo 10^9 + 7 to roll the dice so the sum of the face up numbers equals target.</p>
+</p>
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: d &#x3D; 1, f &#x3D; 6, target &#x3D; 3</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: </span><br><span class="line">You throw one die with 6 faces.  There is only one way to get a sum of 3.</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: d &#x3D; 2, f &#x3D; 6, target &#x3D; 7</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: </span><br><span class="line">You throw two dice, each with 6 faces.  There are 6 ways to get a sum of 7:</span><br><span class="line">1+6, 2+5, 3+4, 4+3, 5+2, 6+1.</span><br></pre></td></tr></table></figure>
+
+
+<p>Example3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: d &#x3D; 30, f &#x3D; 30, target &#x3D; 500</span><br><span class="line">Output: 222616187</span><br><span class="line">Explanation: </span><br><span class="line">The answer must be returned modulo 10^9 + 7.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numRollsToTarget</span><span class="params">(<span class="keyword">int</span> d, <span class="keyword">int</span> f, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Problem-Discussion"><a href="#Problem-Discussion" class="headerlink" title="Problem Discussion:"></a>Problem Discussion:</h2><h3 id="category-DP-Dynamic-Programming-gt-water-pokemon"><a href="#category-DP-Dynamic-Programming-gt-water-pokemon" class="headerlink" title="category: DP(Dynamic Programming) -&gt; water pokemon!"></a>category: DP(Dynamic Programming) -&gt; water pokemon!</h3><h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition:"></a>Intuition:</h3><p>
+
+<p>This is a classic DP problem which we will solve by first defining DP states and then seek for transistion function.<br>After seeing many series of the DP problem, the flavor of this one should be similar. </p>
+</p>
+
+
+
+<h4 id="step1-Define-DP-state"><a href="#step1-Define-DP-state" class="headerlink" title="step1: Define DP state"></a>step1: Define DP state</h4><p>
+
+<p>We define DP[i][j] as the number of ways that we can reach target J by using the I flips of the dice. Additionally, we should notice thatt we can do dimension reduction to save space complexity.</p>
+</p>
+
+
+<h4 id="step2-Seek-For-Transition-Function"><a href="#step2-Seek-For-Transition-Function" class="headerlink" title="step2: Seek For Transition Function"></a>step2: Seek For Transition Function</h4><p>
+To reach DP[i][j]. There are actually <strong>f</strong> ways to do so, where f denotes the max number that a dice can have.
+
+
+
+<p>Therefore, dp[i][j] is the summation of the dp[i-1][j-k] where k ∈ [1, f].</p>
+<p>As simple as it seems, we can go directly to code it out! </p>
+</p>
+
+<h2 id="Problem-Solution-Runtime-Analysis-O-d-k-target"><a href="#Problem-Solution-Runtime-Analysis-O-d-k-target" class="headerlink" title="Problem Solution Runtime Analysis: O(d * k * target)"></a>Problem Solution Runtime Analysis: O(d * k * target)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> M = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numRollsToTarget</span><span class="params">(<span class="keyword">int</span> d, <span class="keyword">int</span> f, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// d, target</span></span><br><span class="line">        <span class="comment">// 2D -&gt; dimension reduction to save space! </span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt; dp_left = <span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt;(target + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt; dp_right = <span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt;(target + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// start state</span></span><br><span class="line">        dp_left[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// run d times</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= d; i++)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">std</span>::fill(dp_right.begin(), dp_right.end(), <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= f; j++)&#123;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// start -&gt; for the last round, at least i - 1</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> start = i - <span class="number">1</span>; start &lt;= (i - <span class="number">1</span>) * f; start++)&#123;</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// if the start + j is over target, </span></span><br><span class="line">                    <span class="comment">// we can simply break the loop</span></span><br><span class="line">                    <span class="keyword">if</span>(start + j &gt; target)</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    dp_right[start + j] += dp_left[start];</span><br><span class="line">                    dp_right[start + j] %= M;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// sawp the DP for dimension reduction</span></span><br><span class="line">            swap(dp_left, dp_right);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp_left[target] % M;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/07/14/Leetcode-1155-Number-of-Dice-Rolls-With-Target-Sum/">http://haihao-sun.github.io/2020/07/14/Leetcode-1155-Number-of-Dice-Rolls-With-Target-Sum/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/tech-Leetcode/"># tech-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/07/15/Leetcode-978-Longest-Turbulent-Array/">Leetcode-978-Longest-Turbulent-Array</a>
+            
+            
+            <a class="next" rel="next" href="/2020/07/10/Leetcode-688-Knight-Probability-in-Chessboard/">Leetcode_688_Knight_Probability_in_Chessboard</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

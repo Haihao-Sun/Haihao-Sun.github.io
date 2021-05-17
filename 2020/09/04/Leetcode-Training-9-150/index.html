@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-9/150 | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-9/150</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 4, 2020&nbsp;&nbsp;23:22:22</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://i.pinimg.com/originals/29/5f/ca/295fcac9bc25f4b0c789800c238f07c0.jpg" alt="youjila" style="width:200px;" >
+
+
+
+<p><a href="https://leetcode.com/problems/string-to-integer-atoi/" target="_blank" rel="noopener">8. String to Integer (atoi)</a></p>
+<p>
+Implement atoi which converts a string to an integer.
+
+<p>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.</p>
+<p>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.</p>
+<p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
+<p>If no valid conversion could be performed, a zero value is returned.</p>
+<p>Note:</p>
+<p>Only the space character ‘ ‘ is considered as whitespace character.<br>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. If the numerical value is out of the range of representable values, INT_MAX (231 − 1) or INT_MIN (−231) is returned.</p>
+</p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;words and 987&quot;</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: The first non-whitespace character is &#39;w&#39;, which is not a numerical </span><br><span class="line">             digit or a +&#x2F;- sign. Therefore no valid conversion could be performed.</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;-91283472332&quot;</span><br><span class="line">Output: -2147483648</span><br><span class="line">Explanation: The number &quot;-91283472332&quot; is out of the range of a 32-bit signed integer.</span><br><span class="line">             Thefore INT_MIN (−231) is returned.</span><br></pre></td></tr></table></figure>
+
+<h4 id="Problem-Solution-7-150"><a href="#Problem-Solution-7-150" class="headerlink" title="Problem Solution - 7/150"></a>Problem Solution - 7/150</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myAtoi</span><span class="params">(<span class="built_in">string</span> str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = str.length();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(index &lt; l &amp;&amp; str[index]==<span class="string">' '</span>)&#123;</span><br><span class="line">            index += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(l == index || (str[index] != <span class="string">'-'</span> &amp;&amp;str[index] != <span class="string">'+'</span> &amp;&amp; (str[index] &gt; <span class="string">'9'</span> ||str[index] &lt; <span class="string">'0'</span>)))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">long</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> is_positive = <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> idx = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(str[index] == <span class="string">'-'</span>)&#123;</span><br><span class="line">            is_positive = <span class="literal">false</span>;</span><br><span class="line">            idx = index + <span class="number">1</span>;    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(str[index] == <span class="string">'+'</span>)&#123;</span><br><span class="line">            is_positive = <span class="literal">true</span>;</span><br><span class="line">            idx = index + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            is_positive = <span class="literal">true</span>;</span><br><span class="line">            idx = index;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(; idx &lt; l; idx++)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//currently, we are done performing the numbers</span></span><br><span class="line">            <span class="keyword">if</span>(str[idx] &gt; <span class="string">'9'</span> || str[idx] &lt; <span class="string">'0'</span>)</span><br><span class="line">                 <span class="keyword">return</span> is_positive ? ret : -ret;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                ret = ret * <span class="number">10</span> + (str[idx] - <span class="string">'0'</span>);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// if we are dealing with positive number and ret is bigger than the max that int can be</span></span><br><span class="line">                <span class="comment">// we return int max</span></span><br><span class="line">                <span class="keyword">if</span>(is_positive &amp;&amp; ret &gt; INT_MAX)&#123;</span><br><span class="line">                    <span class="keyword">return</span> INT_MAX;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// if we are dealing with negative number and ret is smaller than the min that int can be</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(!is_positive &amp;&amp; -ret &lt; INT_MIN)&#123;</span><br><span class="line">                    <span class="keyword">return</span> INT_MIN;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> is_positive ? ret : -ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Caution-7-150"><a href="#Caution-7-150" class="headerlink" title="Caution 7/150"></a>Caution 7/150</h4><ul>
+<li>Handle Edge Case</li>
+<li>This is a problem about if/else not </li>
+<li>Implementation O(n)</li>
+</ul>
+<p><a href="https://leetcode.com/problems/regular-expression-matching/" target="_blank" rel="noopener">10. Regular Expression Matching</a></p>
+<p>
+Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
+
+<p>‘.’ Matches any single character.<br>‘*’ Matches zero or more of the preceding element.<br>The matching should cover the entire input string (not partial).</p>
+<p>Note:</p>
+<p>s could be empty and contains only lowercase letters a-z.<br>p could be empty and contains only lowercase letters a-z, and characters like . or *.</p>
+</p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s &#x3D; &quot;aab&quot;</span><br><span class="line">p &#x3D; &quot;c*a*b&quot;</span><br><span class="line">Output: true</span><br><span class="line">Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore, it matches &quot;aab&quot;.</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Problem-Solution-8-150"><a href="#Problem-Solution-8-150" class="headerlink" title="Problem Solution 8/150"></a>Problem Solution 8/150</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// dynamic programming</span></span><br><span class="line">        <span class="keyword">int</span> l1 = s.length(), l2 = p.length();</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; <span class="title">dp</span><span class="params">(l2+<span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(l1 + <span class="number">1</span>, <span class="literal">false</span>))</span></span>;</span><br><span class="line">        </span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= l2; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= l1; ++j)&#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(p[i<span class="number">-1</span>] == <span class="string">'*'</span>)&#123;</span><br><span class="line"></span><br><span class="line">                    dp[i][j] = dp[i<span class="number">-2</span>][j] || dp[i<span class="number">-1</span>][j] || (j &gt; <span class="number">0</span> &amp;&amp; (dp[i][j<span class="number">-1</span>] || dp[i<span class="number">-1</span>][j]) &amp;&amp; (p[i<span class="number">-2</span>] == s[j<span class="number">-1</span>] || p[i<span class="number">-2</span>] == <span class="string">'.'</span>));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j] = (j &amp;&amp; dp[i<span class="number">-1</span>][j<span class="number">-1</span>] &amp;&amp; (p[i<span class="number">-1</span>] == <span class="string">'.'</span> || p[i<span class="number">-1</span>] == s[j<span class="number">-1</span>]));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[l2][l1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Caution-8-150"><a href="#Caution-8-150" class="headerlink" title="Caution 8/150"></a>Caution 8/150</h4><ul>
+<li>Do the PADDING!!! The Trick is to initialize a 2-D matrix with dp[0][0] = True, and all dp[0][i] = false, since p = “” can only match s = “”</li>
+<li>If Match Multiple, we can do dp[i][j] = dp[i-1][j] -&gt; just ignore the current character in s</li>
+<li>Typical DP Problem O(l1 * l2)</li>
+</ul>
+<p><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener">11. Container With Most Water</a></p>
+<p>
+Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+
+<p>Note: You may not slant the container and n is at least 2.</p>
+</p>
+
+<img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg" style="width=200px">
+
+<p style="font-size:12px">
+The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+</p>
+
+
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,8,6,2,5,4,8,3,7]</span><br><span class="line">Output: 49</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Problem-Solution-9-150"><a href="#Problem-Solution-9-150" class="headerlink" title="Problem Solution 9/150"></a>Problem Solution 9/150</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = height.size() - <span class="number">1</span>, ret = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(r &gt; l)&#123;</span><br><span class="line">            <span class="keyword">int</span> d = r - l;</span><br><span class="line">            <span class="comment">// this is updating the current ret</span></span><br><span class="line">            ret = max(ret, d * min(height[r], height[l]) );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="comment">// if we already know that the left is smaller than the right</span></span><br><span class="line">            <span class="comment">// we greedily move the left pointer, since if we move the right pointer, we know that we </span></span><br><span class="line">            <span class="comment">// the new area that we are having is still smaller than the previous one since the </span></span><br><span class="line">            <span class="comment">// 1, the distance is smaller if we do not move left pointer, then the d is smaller</span></span><br><span class="line">            <span class="comment">// 2, the height cannot be lareger since we know that nums[l] is the limit factor</span></span><br><span class="line">            <span class="comment">// this reasoning concludes how we move the pointers</span></span><br><span class="line">            <span class="keyword">if</span>(height[r] &gt; height[l])&#123;</span><br><span class="line">                l += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                r -= <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Caution-9-150"><a href="#Caution-9-150" class="headerlink" title="Caution 9/150"></a>Caution 9/150</h4><ul>
+<li>We need to make sure that we prove the algorithm that we use.</li>
+<li>Greedy Algorithm O(n)</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/04/Leetcode-Training-9-150/">http://haihao-sun.github.io/2020/09/04/Leetcode-Training-9-150/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode/"># training-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/05/Leetcode-Training-12-150/">Leetcode-Training-12/150</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/03/Leetcode-Training-6-150/">Leetcode-Training-6/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

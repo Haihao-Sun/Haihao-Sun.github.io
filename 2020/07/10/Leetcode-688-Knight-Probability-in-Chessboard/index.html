@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode_688_Knight_Probability_in_Chessboard | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode_688_Knight_Probability_in_Chessboard</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 10, 2020&nbsp;&nbsp;20:34:39</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/DP/">DP</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://pm1.narvii.com/6542/43d0552e15f0f776b87d97d45773cab05242e036_hq.jpg" style="width:200px;">
+
+
+<p><a href="https://leetcode.com/problems/knight-probability-in-chessboard/" target="_blank" rel="noopener">link to Leetcode_688_Knight_Probability_in_Chessboard</a></p>
+<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h2><p>On an N x N chessboard, a knight starts at the r-th row and c-th column and attempts to make exactly K moves. The rows and columns are 0 indexed, so the top-left square is (0, 0), and the bottom-right square is (N-1, N-1).
+
+<p>A chess knight has 8 possible moves it can make, as illustrated below. Each move is two squares in a cardinal direction, then one square in an orthogonal direction.</p>
+<p>Each time the knight is to move, it chooses one of eight possible moves uniformly at random (even if the piece would go off the chessboard) and moves there.</p>
+<p>The knight continues moving until it has made exactly K moves or has moved off the chessboard. Return the probability that the knight remains on the board after it has stopped moving.</p>
+</p>
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: 3, 2, 0, 0</span><br><span class="line">Output: 0.0625</span><br><span class="line">Explanation: There are two moves (to (1,2), (2,1)) that will keep the knight on the board.</span><br><span class="line">From each of those positions, there are also two moves that will keep the knight on the board.</span><br><span class="line">The total probability the knight stays on the board is 0.0625.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">knightProbability</span><span class="params">(<span class="keyword">int</span> N, <span class="keyword">int</span> K, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Problem-Discussion"><a href="#Problem-Discussion" class="headerlink" title="Problem Discussion:"></a>Problem Discussion:</h2><h3 id="category-DP-Dynamic-Programming-gt-water-pokemon"><a href="#category-DP-Dynamic-Programming-gt-water-pokemon" class="headerlink" title="category: DP(Dynamic Programming) -&gt; water pokemon!"></a>category: DP(Dynamic Programming) -&gt; water pokemon!</h3><h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition:"></a>Intuition:</h3><p>
+This looks like a statistics problem, and yes, programmer should know a little bit statistics at least! 
+
+<p>While we know that we can find the count of the sample space(which is 8^k since for each move, we have 8 options). </p>
+<p>Additionally, we just need to figure out the number of ways that the knight is still in the board, and we can do the division.</p>
+<p>How to figure out the number of ways that knight is still in the board? What is the difficulty we are facing to solve the number of ways that knight is still in the board?</p>
+</p>
+
+<p>
+We can add <b>dimension</b> to formulate the problem, and solve it more conveniently.
+</p>
+
+
+
+<h4 id="Step1-Define-DP-state"><a href="#Step1-Define-DP-state" class="headerlink" title="Step1: Define DP state"></a>Step1: Define DP state</h4><p>
+if we have a board with N * N dimension, we let dp[r][c][t] means the number of ways that knight can stand in (r, c) after t jumps.
+Here we add one dimension which is the number of times that the knight jumped to make the dp clearly.
+</p>
+
+
+<h4 id="Step2-Seek-for-Transition-Function"><a href="#Step2-Seek-for-Transition-Function" class="headerlink" title="Step2: Seek for Transition Function"></a>Step2: Seek for Transition Function</h4><p>
+While we know that dp[r][c][t] means that number of ways that knight can stand in (r,c) after t jumps, it is obvious that we can use the board at [t-1] to seek for the board at t.
+</p>
+
+
+<h4 id="Step3-Dimension-Reduction"><a href="#Step3-Dimension-Reduction" class="headerlink" title="Step3: Dimension Reduction"></a>Step3: Dimension Reduction</h4><p>
+We can still make the 3-D DP to 2-D since we do not need to explicitly create a 3-D array. Therefore, we save a huge amount of space using dimension reduction.
+</p>
+
+<h4 id="Special-notice-on-float-double-long-long"><a href="#Special-notice-on-float-double-long-long" class="headerlink" title="Special notice on float, double, long long"></a>Special notice on float, double, long long</h4><p>TL;DR An IEE-754 float can precisely represent all integers up to 224 and double up to 253, but only some integers of greater magnitude (the spacing of representable values depends on the magnitude)</p>
+<ul>
+    <li>long long -> 9.22e18</li>
+    <li>unsigned long long ->  1.8e19</li>
+    <li>float -> 3.40282e+38  </li>
+    <li>double -> 1.8e308</li>
+</ul>
+
+<p><strong>code for testing</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showMinMax</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"min: "</span> &lt;&lt; numeric_limits&lt;T&gt;::min() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"max: "</span> &lt;&lt; numeric_limits&lt;T&gt;::max() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Hello World"</span>;</span><br><span class="line">    showMinMax&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;();</span><br><span class="line">    showMinMax&lt;<span class="keyword">float</span>&gt;();</span><br><span class="line">    showMinMax&lt;<span class="keyword">double</span>&gt;();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution"><a href="#Problem-Solution" class="headerlink" title="Problem Solution:"></a>Problem Solution:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">knightProbability</span><span class="params">(<span class="keyword">int</span> N, <span class="keyword">int</span> K, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// make sure to use double here </span></span><br><span class="line">        <span class="comment">// double can store the max integer due to the IEEE 754</span></span><br><span class="line">        <span class="comment">// double is awesome! </span></span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;&gt; <span class="title">dp_pre</span><span class="params">(N, <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;(N, <span class="number">0</span>))</span></span>;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;&gt; <span class="title">dp_cur</span><span class="params">(N, <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;(N, <span class="number">0</span>))</span></span>;</span><br><span class="line">        dp_pre[r][c] = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dirs = &#123;&#123;<span class="number">-2</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">-2</span>, <span class="number">1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">-2</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">2</span>&#125;, &#123;<span class="number">1</span>, <span class="number">-2</span>&#125;, &#123;<span class="number">1</span>, <span class="number">2</span>&#125;, &#123;<span class="number">2</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">2</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i++)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">0</span>; p &lt; N; p++)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp_cur[j][p] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">auto</span> dir : dirs)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">if</span> (j + dir[<span class="number">0</span>] &gt;= <span class="number">0</span> &amp;&amp; j + dir[<span class="number">0</span>] &lt; N </span><br><span class="line">                        &amp;&amp; p + dir[<span class="number">1</span>] &gt;= <span class="number">0</span> &amp;&amp; p + dir[<span class="number">1</span>] &lt; N)</span><br><span class="line">                        &#123;</span><br><span class="line">                            dp_cur[j][p] </span><br><span class="line">                                += dp_pre[j + dir[<span class="number">0</span>]][p + dir[<span class="number">1</span>]];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            swap(dp_cur, dp_pre);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                count += dp_pre[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count / <span class="built_in">pow</span>(<span class="number">8.0</span>, K);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/07/10/Leetcode-688-Knight-Probability-in-Chessboard/">http://haihao-sun.github.io/2020/07/10/Leetcode-688-Knight-Probability-in-Chessboard/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/tech-Leetcode/"># tech-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/07/14/Leetcode-1155-Number-of-Dice-Rolls-With-Target-Sum/">Leetcode-1155-Number-of-Dice-Rolls-With-Target-Sum</a>
+            
+            
+            <a class="next" rel="next" href="/2020/07/09/Leetcode-309-714-Stock/">Leetcode-309-714-Stock</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

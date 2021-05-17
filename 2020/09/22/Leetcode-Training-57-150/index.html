@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-57/150 | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-57/150</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 22, 2020&nbsp;&nbsp;9:40:21</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://p-img.movetv.com/cms/images/5833bb6dc6c83f43dad6fa7409182740bc82189b.jpg" style="width=200px">
+
+<h2 id="Problem-Description-105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-55-150-4-5"><a href="#Problem-Description-105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-55-150-4-5" class="headerlink" title="Problem Description 105. Construct Binary Tree from Preorder and Inorder Traversal | 55/150  | 4/5"></a>Problem Description <a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">105. Construct Binary Tree from Preorder and Inorder Traversal</a> | 55/150  | 4/5</h2><p>
+
+<p>Given preorder and inorder traversal of a tree, construct the binary tree.</p>
+<p>Note:<br>You may assume that duplicates do not exist in the tree.</p>
+</p>
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">preorder &#x3D; [3,9,20,15,7]</span><br><span class="line">inorder &#x3D; [9,3,15,20,7]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-56-150-4-5"><a href="#Problem-Solution-105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-56-150-4-5" class="headerlink" title="Problem Solution 105. Construct Binary Tree from Preorder and Inorder Traversal | 56/150  | 4/5"></a>Problem Solution <a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">105. Construct Binary Tree from Preorder and Inorder Traversal</a> | 56/150  | 4/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, preorder: List[int], inorder: List[int])</span> -&gt; TreeNode:</span></span><br><span class="line">        </span><br><span class="line">        mp = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(inorder)):</span><br><span class="line">            mp[inorder[i]] = i</span><br><span class="line">            </span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(focus_left, focus_right, idx)</span>:</span></span><br><span class="line">            <span class="keyword">if</span>(focus_left &gt; focus_right):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            </span><br><span class="line">            root_val = preorder[idx]</span><br><span class="line">            root_node = TreeNode(root_val)</span><br><span class="line">            idx_in_inorder = mp[root_val]</span><br><span class="line">            number_of_elements = idx_in_inorder - focus_left </span><br><span class="line">            root_node.left = helper(focus_left, idx_in_inorder - <span class="number">1</span>, idx + <span class="number">1</span>)</span><br><span class="line">            root_node.right = helper(idx_in_inorder + <span class="number">1</span>, focus_right, idx + number_of_elements + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> root_node</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> helper(<span class="number">0</span>, len(inorder) - <span class="number">1</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-55-150-4-5"><a href="#Problem-Solution-105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-55-150-4-5" class="headerlink" title="Problem Solution 105. Construct Binary Tree from Preorder and Inorder Traversal | 55/150  | 4/5"></a>Problem Solution <a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">105. Construct Binary Tree from Preorder and Inorder Traversal</a> | 55/150  | 4/5</h2><ul>
+<li>Recursion with two pointers!</li>
+<li>O(n)  </li>
+</ul>
+<h2 id="Problem-Description-108-Convert-Sorted-Array-to-Binary-Search-Tree-56-150-4-5"><a href="#Problem-Description-108-Convert-Sorted-Array-to-Binary-Search-Tree-56-150-4-5" class="headerlink" title="Problem Description 108. Convert Sorted Array to Binary Search Tree | 56/150  | 4/5"></a>Problem Description <a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/" target="_blank" rel="noopener">108. Convert Sorted Array to Binary Search Tree</a> | 56/150  | 4/5</h2><p>
+
+<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+<p>For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.</p>
+</p>
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Given the sorted array: [-10,-3,0,5,9],</span><br><span class="line"></span><br><span class="line">One possible answer is: [0,-3,9,-10,null,5], which represents the following height balanced BST:</span><br><span class="line"></span><br><span class="line">      0</span><br><span class="line">     &#x2F; \</span><br><span class="line">   -3   9</span><br><span class="line">   &#x2F;   &#x2F;</span><br><span class="line"> -10  5</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-108-Convert-Sorted-Array-to-Binary-Search-Tree-56-150-4-5"><a href="#Problem-Solution-108-Convert-Sorted-Array-to-Binary-Search-Tree-56-150-4-5" class="headerlink" title="Problem Solution 108. Convert Sorted Array to Binary Search Tree | 56/150  | 4/5"></a>Problem Solution <a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/" target="_blank" rel="noopener">108. Convert Sorted Array to Binary Search Tree</a> | 56/150  | 4/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortedArrayToBST</span><span class="params">(self, nums: List[int])</span> -&gt; TreeNode:</span></span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(left_focus, right_focus)</span>:</span></span><br><span class="line">            <span class="keyword">if</span>(left_focus &gt; right_focus):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            mid_focus = (right_focus - left_focus) // <span class="number">2</span> + left_focus</span><br><span class="line">            root_ = TreeNode(nums[mid_focus])</span><br><span class="line">            root_.left = helper(left_focus, mid_focus - <span class="number">1</span>)</span><br><span class="line">            root_.right = helper(mid_focus + <span class="number">1</span>, right_focus)</span><br><span class="line">            <span class="keyword">return</span> root_</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> helper(<span class="number">0</span>, len(nums) - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Caution-108-Convert-Sorted-Array-to-Binary-Search-Tree-57-150-4-5"><a href="#Problem-Caution-108-Convert-Sorted-Array-to-Binary-Search-Tree-57-150-4-5" class="headerlink" title="Problem Caution 108. Convert Sorted Array to Binary Search Tree | 57/150  | 4/5"></a>Problem Caution <a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/" target="_blank" rel="noopener">108. Convert Sorted Array to Binary Search Tree</a> | 57/150  | 4/5</h2><ul>
+<li>Recursion with two pointers</li>
+<li>Set up the boundary condition</li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Description-116-Populating-Next-Right-Pointers-in-Each-Node-55-150-4-5"><a href="#Problem-Description-116-Populating-Next-Right-Pointers-in-Each-Node-55-150-4-5" class="headerlink" title="Problem Description 116. Populating Next Right Pointers in Each Node | 55/150  | 4/5"></a>Problem Description <a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="noopener">116. Populating Next Right Pointers in Each Node</a> | 55/150  | 4/5</h2><p>
+
+<p>You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:</p>
+<p>struct Node {<br>  int val;<br>  Node *left;<br>  Node *right;<br>  Node *next;<br>}<br>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.</p>
+<p>Initially, all next pointers are set to NULL.</p>
+</p>
+
+
+
+
+<img src="https://assets.leetcode.com/uploads/2019/02/14/116_sample.png" style="wdith=200px">
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: root &#x3D; [1,2,3,4,5,6,7]</span><br><span class="line">Output: [1,#,2,3,#,4,5,6,7,#]</span><br><span class="line">Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with &#39;#&#39; signifying the end of each level.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-116-Populating-Next-Right-Pointers-in-Each-Node-57-150-4-5"><a href="#Problem-Solution-116-Populating-Next-Right-Pointers-in-Each-Node-57-150-4-5" class="headerlink" title="Problem Solution 116. Populating Next Right Pointers in Each Node | 57/150 | 4/5"></a>Problem Solution <a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="noopener">116. Populating Next Right Pointers in Each Node</a> | 57/150 | 4/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connect</span><span class="params">(self, root: <span class="string">'Node'</span>)</span> -&gt; 'Node':</span></span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(node, neighbour)</span>:</span></span><br><span class="line">            <span class="keyword">if</span>(node == <span class="literal">None</span>):</span><br><span class="line">                <span class="keyword">return</span> node</span><br><span class="line">            <span class="keyword">elif</span>(node.left == <span class="literal">None</span> <span class="keyword">or</span> node.right == <span class="literal">None</span>):</span><br><span class="line">                node.next = neighbour</span><br><span class="line">                <span class="keyword">return</span> node</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                node.left = helper(node.left, node.right)</span><br><span class="line">                node.right  = helper(node.right, <span class="literal">None</span>) <span class="keyword">if</span>  neighbour == <span class="literal">None</span> <span class="keyword">else</span> helper(node.right, neighbour.left)</span><br><span class="line">                node.next = neighbour</span><br><span class="line">                <span class="keyword">return</span> node</span><br><span class="line">        <span class="keyword">return</span> helper(root, <span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Caution-116-Populating-Next-Right-Pointers-in-Each-Node-57-150-4-5"><a href="#Problem-Caution-116-Populating-Next-Right-Pointers-in-Each-Node-57-150-4-5" class="headerlink" title="Problem Caution 116. Populating Next Right Pointers in Each Node | 57/150 | 4/5"></a>Problem Caution <a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="noopener">116. Populating Next Right Pointers in Each Node</a> | 57/150 | 4/5</h2><ul>
+<li>Recursion with boundary condition DFS</li>
+<li>O(n)</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/22/Leetcode-Training-57-150/">http://haihao-sun.github.io/2020/09/22/Leetcode-Training-57-150/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode/"># training-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/23/Leetcode-Training-60-150/">Leetcode-Training-60/150</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/21/Leetcode-Training-54-150/">Leetcode-Training-54/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

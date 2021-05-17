@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-69/150 | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-69/150</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 26, 2020&nbsp;&nbsp;12:05:32</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT7zVffSkAiztltAlZ38E7COe3F8hxF5_tYpg&usqp=CAU" style="width:200px">
+
+<h2 id="Problem-Description-134-Gas-Station-67-150-2-5-5"><a href="#Problem-Description-134-Gas-Station-67-150-2-5-5" class="headerlink" title="Problem Description 134. Gas Station | 67/150  | 2.5/5"></a>Problem Description <a href="https://leetcode.com/problems/gas-station/" target="_blank" rel="noopener">134. Gas Station</a> | 67/150  | 2.5/5</h2><p>
+There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
+
+<p>You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.</p>
+<p>Return the starting gas station’s index if you can travel around the circuit once in the clockwise direction, otherwise return -1.</p>
+<p>Note:</p>
+<ul>
+<li>If there exists a solution, it is guaranteed to be unique.</li>
+<li>Both input arrays are non-empty and have the same length.</li>
+<li>Each element in the input arrays is a non-negative integer</p>
+
+
+
+</li>
+</ul>
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">gas  &#x3D; [1,2,3,4,5]</span><br><span class="line">cost &#x3D; [3,4,5,1,2]</span><br><span class="line"></span><br><span class="line">Output: 3</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank &#x3D; 0 + 4 &#x3D; 4</span><br><span class="line">Travel to station 4. Your tank &#x3D; 4 - 1 + 5 &#x3D; 8</span><br><span class="line">Travel to station 0. Your tank &#x3D; 8 - 2 + 1 &#x3D; 7</span><br><span class="line">Travel to station 1. Your tank &#x3D; 7 - 3 + 2 &#x3D; 6</span><br><span class="line">Travel to station 2. Your tank &#x3D; 6 - 4 + 3 &#x3D; 5</span><br><span class="line">Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.</span><br><span class="line">Therefore, return 3 as the starting index.</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-134-Gas-Station-67-150-2-5-5"><a href="#Problem-Solution-134-Gas-Station-67-150-2-5-5" class="headerlink" title="Problem Solution 134. Gas Station | 67/150  | 2.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/gas-station/" target="_blank" rel="noopener">134. Gas Station</a> | 67/150  | 2.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canCompleteCircuit</span><span class="params">(self, gas: List[int], cost: List[int])</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> sum(cost) &gt; sum(gas):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        start, tank = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(gas)):</span><br><span class="line">            tank += (gas[i] - cost[i])</span><br><span class="line">            <span class="keyword">if</span> tank &lt; <span class="number">0</span>:</span><br><span class="line">                start = i + <span class="number">1</span></span><br><span class="line">                tank = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> start</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Problem-Solution-134-Gas-Station-67-150-2-5-5-1"><a href="#Problem-Solution-134-Gas-Station-67-150-2-5-5-1" class="headerlink" title="Problem Solution 134. Gas Station | 67/150  | 2.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/gas-station/" target="_blank" rel="noopener">134. Gas Station</a> | 67/150  | 2.5/5</h2><ul>
+<li><a href="https://leetcode.com/problems/gas-station/discuss/42572/Proof-of-%22if-total-gas-is-greater-than-total-cost-there-is-a-solution%22.-C%2B%2B" target="_blank" rel="noopener">Proof of “if total gas is greater than total cost, there is a solution</a></li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Description-136-Single-Number-68-150-4-5-5"><a href="#Problem-Description-136-Single-Number-68-150-4-5-5" class="headerlink" title="Problem Description 136. Single Number | 68/150  | 4.5/5"></a>Problem Description <a href="https://leetcode.com/problems/single-number/" target="_blank" rel="noopener">136. Single Number</a> | 68/150  | 4.5/5</h2><p>
+Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+
+<p>Note:</p>
+<p>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+</p>
+
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">Input: [2,2,1]</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-136-Single-Number-68-150-4-5-5"><a href="#Problem-Solution-136-Single-Number-68-150-4-5-5" class="headerlink" title="Problem Solution 136. Single Number | 68/150  | 4.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/single-number/" target="_blank" rel="noopener">136. Single Number</a> | 68/150  | 4.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">singleNumber</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        ret = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            ret ^= num</span><br><span class="line">        <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Problem-Caution-136-Single-Number-68-150-4-5-5"><a href="#Problem-Caution-136-Single-Number-68-150-4-5-5" class="headerlink" title="Problem Caution 136. Single Number | 68/150  | 4.5/5"></a>Problem Caution <a href="https://leetcode.com/problems/single-number/" target="_blank" rel="noopener">136. Single Number</a> | 68/150  | 4.5/5</h2><ul>
+<li>Bit Manipulation</li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Description-138-Copy-List-with-Random-Pointer-66-150-2-5-5"><a href="#Problem-Description-138-Copy-List-with-Random-Pointer-66-150-2-5-5" class="headerlink" title="Problem Description 138. Copy List with Random Pointer | 66/150  | 2.5/5"></a>Problem Description <a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">138. Copy List with Random Pointer</a> | 66/150  | 2.5/5</h2><p>
+A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+
+<p>Return a deep copy of the list.</p>
+<p>The Linked List is represented in the input/output as a list of n nodes. Each node is represented as a pair of [val, random_index] where:</p>
+<p>val: an integer representing Node.val<br>random_index: the index of the node (range from 0 to n-1) where random pointer points to, or null if it does not point to any node.</p>
+</p>
+
+
+
+<p>Example1:<br><img src="https://assets.leetcode.com/uploads/2019/12/18/e1.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: head &#x3D; [[7,null],[13,0],[11,4],[10,2],[1,0]]</span><br><span class="line">Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Description-138-Copy-List-with-Random-Pointer-66-150-2-5-5-1"><a href="#Problem-Description-138-Copy-List-with-Random-Pointer-66-150-2-5-5-1" class="headerlink" title="Problem Description 138. Copy List with Random Pointer | 66/150  | 2.5/5"></a>Problem Description <a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">138. Copy List with Random Pointer</a> | 66/150  | 2.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"># Definition for a Node.</span></span><br><span class="line"><span class="string">class Node:</span></span><br><span class="line"><span class="string">    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):</span></span><br><span class="line"><span class="string">        self.val = int(x)</span></span><br><span class="line"><span class="string">        self.next = next</span></span><br><span class="line"><span class="string">        self.random = random</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copyRandomList</span><span class="params">(self, head: <span class="string">'Node'</span>)</span> -&gt; 'Node':</span></span><br><span class="line">        <span class="keyword">if</span> head == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span>        </span><br><span class="line"></span><br><span class="line">        <span class="comment"># Step1: copy the list nodes</span></span><br><span class="line">        p = head</span><br><span class="line">        <span class="keyword">while</span> p != <span class="literal">None</span>:</span><br><span class="line">            new_node = Node(p.val)</span><br><span class="line">            new_node.next = p.next</span><br><span class="line">            p.next = new_node</span><br><span class="line">            p = p.next.next</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="comment"># Stpe2: set the random pointer</span></span><br><span class="line">        p = head</span><br><span class="line">        <span class="keyword">while</span> p != <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">if</span> p.random != <span class="literal">None</span>:</span><br><span class="line">                p.next.random = p.random.next</span><br><span class="line">            p = p.next.next</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Step3: divide those two lists apart</span></span><br><span class="line">        ret = head.next</span><br><span class="line">        old_head = head</span><br><span class="line">        new_head = head.next</span><br><span class="line">        <span class="keyword">while</span> old_head.next.next != <span class="literal">None</span>:</span><br><span class="line">            old_head.next = new_head.next</span><br><span class="line">            new_head.next = old_head.next.next</span><br><span class="line">            old_head = old_head.next</span><br><span class="line">            new_head = new_head.next</span><br><span class="line"></span><br><span class="line">        old_head.next = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Problem-Description-138-Copy-List-with-Random-Pointer-66-150-2-5-5-2"><a href="#Problem-Description-138-Copy-List-with-Random-Pointer-66-150-2-5-5-2" class="headerlink" title="Problem Description 138. Copy List with Random Pointer | 66/150  | 2.5/5"></a>Problem Description <a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">138. Copy List with Random Pointer</a> | 66/150  | 2.5/5</h2><ul>
+<li>Clone a Graph</li>
+<li>O(n) O(1) with a smart thinking</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/26/Leetcode-Training-69-150/">http://haihao-sun.github.io/2020/09/26/Leetcode-Training-69-150/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode/"># training-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/27/Leetcode-Training-72-150/">Leetcode-Training-72/150 </a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/25/Leetcode-Training-66-150/">Leetcode-Training-66/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

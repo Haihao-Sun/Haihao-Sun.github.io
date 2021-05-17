@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-II-5/136 | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-II-5/136</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 26, 2020&nbsp;&nbsp;18:02:06</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQjpTfFToqiVg9Ty-1m0zzrj2TasFhcUKJuFw&usqp=CAU" alt="dragon" style="width:200px;" >
+
+<h3 id="To-Improve-List"><a href="#To-Improve-List" class="headerlink" title="To Improve List"></a>To Improve List</h3><ul>
+<li><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener">4. Median of Two Sorted Arrays</a> Category: Binary Search</li>
+</ul>
+<h2 id="Problem-Solution-1-Two-Sum-1-136-5-5"><a href="#Problem-Solution-1-Two-Sum-1-136-5-5" class="headerlink" title="Problem Solution 1. Two Sum | 1/136  | 5/5"></a>Problem Solution <a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener">1. Two Sum</a> | 1/136  | 5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums: List[int], target: int)</span> -&gt; List[int]:</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># target to index</span></span><br><span class="line">        complement_to_index = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            cur_num = nums[i]</span><br><span class="line">            complement_to_index[target - cur_num] = i</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            cur_num = nums[i]</span><br><span class="line">            <span class="keyword">if</span> cur_num <span class="keyword">in</span> complement_to_index <span class="keyword">and</span> complement_to_index[cur_num] != i:</span><br><span class="line">                <span class="keyword">return</span> [i, complement_to_index[cur_num]]</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Comment-1-Two-Sum-1-136-5-5"><a href="#Problem-Comment-1-Two-Sum-1-136-5-5" class="headerlink" title="Problem Comment 1. Two Sum | 1/136  | 5/5"></a>Problem Comment <a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener">1. Two Sum</a> | 1/136  | 5/5</h2><ul>
+<li>Hashmap with index, take care of duplicates!</li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Solution-2-Add-Two-Numbers-2-136-4-5-5"><a href="#Problem-Solution-2-Add-Two-Numbers-2-136-4-5-5" class="headerlink" title="Problem Solution 2. Add Two Numbers | 2/136  | 4.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/add-two-numbers/" target="_blank" rel="noopener">2. Add Two Numbers</a> | 2/136  | 4.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(self, l1: ListNode, l2: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        Input: l1 = [2,4,3], l2 = [5,6,4]</span></span><br><span class="line"><span class="string">        Output: [7,0,8]</span></span><br><span class="line"><span class="string">        Explanation: 342 + 465 = 807.</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># just add</span></span><br><span class="line">        carry = <span class="number">0</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        tail = dummy</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(l1 != <span class="literal">None</span> <span class="keyword">or</span> l2 != <span class="literal">None</span> <span class="keyword">or</span> carry != <span class="number">0</span>):</span><br><span class="line">            num1 = <span class="number">0</span> <span class="keyword">if</span> l1 == <span class="literal">None</span> <span class="keyword">else</span> l1.val</span><br><span class="line">            l1 = l1 <span class="keyword">if</span> l1 == <span class="literal">None</span> <span class="keyword">else</span> l1.next</span><br><span class="line">            num2 = <span class="number">0</span> <span class="keyword">if</span> l2 == <span class="literal">None</span> <span class="keyword">else</span> l2.val</span><br><span class="line">            l2 = l2 <span class="keyword">if</span> l2 == <span class="literal">None</span> <span class="keyword">else</span> l2.next</span><br><span class="line">            current_num = (carry + num1 + num2) % <span class="number">10</span></span><br><span class="line">            carry = (carry + num1 + num2) // <span class="number">10</span></span><br><span class="line">            cur_node = ListNode(current_num)</span><br><span class="line">            tail.next = cur_node</span><br><span class="line">            tail = cur_node</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-Comment-2-Add-Two-Numbers-2-136-4-5-5"><a href="#Problem-Comment-2-Add-Two-Numbers-2-136-4-5-5" class="headerlink" title="Problem Comment 2. Add Two Numbers | 2/136  | 4.5/5"></a>Problem Comment <a href="https://leetcode.com/problems/add-two-numbers/" target="_blank" rel="noopener">2. Add Two Numbers</a> | 2/136  | 4.5/5</h2><ul>
+<li>simulate summation with two big numbers, should be easy</li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Solution-3-Longest-Substring-Without-Repeating-Characters-3-136-4-5-5"><a href="#Problem-Solution-3-Longest-Substring-Without-Repeating-Characters-3-136-4-5-5" class="headerlink" title="Problem Solution 3. Longest Substring Without Repeating Characters | 3/136  | 4.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener">3. Longest Substring Without Repeating Characters</a> | 3/136  | 4.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line"></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        Input: s = "abcabcbb"</span></span><br><span class="line"><span class="string">        Output: 3</span></span><br><span class="line"><span class="string">        Explanation: The answer is "abc", with the length of 3.</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line"></span><br><span class="line">        n = len(s)</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># sliding window problem</span></span><br><span class="line">        <span class="comment"># left_pointer, right_pointer</span></span><br><span class="line">        left_ptr, right_ptr = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        ret = <span class="number">0</span></span><br><span class="line">        contained_char = set()</span><br><span class="line">        <span class="keyword">while</span>(right_ptr &lt; n):</span><br><span class="line">            cur_char = s[right_ptr]</span><br><span class="line">            <span class="keyword">if</span> cur_char <span class="keyword">in</span> contained_char:</span><br><span class="line">                <span class="keyword">while</span>(left_ptr &lt; n <span class="keyword">and</span> s[left_ptr] != cur_char):</span><br><span class="line">                    contained_char.remove(s[left_ptr])</span><br><span class="line">                    left_ptr += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># [left_ptr, right_ptr] is valid</span></span><br><span class="line">                left_ptr += <span class="number">1</span></span><br><span class="line">                ret = max(ret, right_ptr - left_ptr + <span class="number">1</span>)</span><br><span class="line">                right_ptr += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                contained_char.add(cur_char)</span><br><span class="line">                ret = max(ret, right_ptr - left_ptr + <span class="number">1</span>)</span><br><span class="line">                right_ptr += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Comment-3-Longest-Substring-Without-Repeating-Characters-3-136-4-5-5"><a href="#Problem-Comment-3-Longest-Substring-Without-Repeating-Characters-3-136-4-5-5" class="headerlink" title="Problem Comment 3. Longest Substring Without Repeating Characters | 3/136  | 4.5/5"></a>Problem Comment <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener">3. Longest Substring Without Repeating Characters</a> | 3/136  | 4.5/5</h2><ul>
+<li>sliding window!</li>
+<li>set left_ptr, right_ptr, do the logic when meeting duplicates</li>
+<li>reduce the code in the end</li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Description-4-Median-of-Two-Sorted-Arrays-4-136-2-5"><a href="#Problem-Description-4-Median-of-Two-Sorted-Arrays-4-136-2-5" class="headerlink" title="Problem Description 4. Median of Two Sorted Arrays | 4/136  | 2/5"></a>Problem Description <a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener">4. Median of Two Sorted Arrays</a> | 4/136  | 2/5</h2><p>
+
+<p>Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.</p>
+<p>Follow up: The overall run time complexity should be O(log (m+n)).</p>
+</p>
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums1 &#x3D; [1,2], nums2 &#x3D; [3,4]</span><br><span class="line">Output: 2.50000</span><br><span class="line">Explanation: merged array &#x3D; [1,2,3,4] and median is (2 + 3) &#x2F; 2 &#x3D; 2.5.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-4-Median-of-Two-Sorted-Arrays-4-136-2-5"><a href="#Problem-Solution-4-Median-of-Two-Sorted-Arrays-4-136-2-5" class="headerlink" title="Problem Solution 4. Median of Two Sorted Arrays | 4/136  | 2/5"></a>Problem Solution <a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener">4. Median of Two Sorted Arrays</a> | 4/136  | 2/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMedianSortedArrays</span><span class="params">(self, nums1: List[int], nums2: List[int])</span> -&gt; float:</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> len(nums1) &gt; len(nums2):</span><br><span class="line">            <span class="keyword">return</span> self.findMedianSortedArrays(nums2, nums1)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># we always make sure that length of nums2 &gt; length of nums1</span></span><br><span class="line">        m, n = len(nums1), len(nums2)</span><br><span class="line">        l, h = <span class="number">0</span>, len(nums1)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(h &gt;= l):</span><br><span class="line">            partitionX = (h - l) // <span class="number">2</span> + l</span><br><span class="line">            partitionY = (m + n + <span class="number">1</span>) // <span class="number">2</span> - partitionX</span><br><span class="line"></span><br><span class="line">            left_max_x = -float(<span class="string">'inf'</span>) <span class="keyword">if</span> partitionX == <span class="number">0</span> <span class="keyword">else</span> nums1[partitionX - <span class="number">1</span>]</span><br><span class="line">            left_max_y = -float(<span class="string">'inf'</span>) <span class="keyword">if</span> partitionY == <span class="number">0</span> <span class="keyword">else</span> nums2[partitionY - <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">            right_min_x = float(<span class="string">'inf'</span>) <span class="keyword">if</span> partitionX == m <span class="keyword">else</span> nums1[partitionX]</span><br><span class="line">            right_min_y = float(<span class="string">'inf'</span>) <span class="keyword">if</span> partitionY == n <span class="keyword">else</span> nums2[partitionY]</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> left_max_x &lt;= right_min_y <span class="keyword">and</span> left_max_y &lt;= right_min_x:</span><br><span class="line">                <span class="keyword">if</span> (m + n) &amp; <span class="number">1</span>:</span><br><span class="line">                    <span class="keyword">return</span> max(left_max_x, left_max_y)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> (max(left_max_x, left_max_y) + min(right_min_x, right_min_y)) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> left_max_x &gt; right_min_y:</span><br><span class="line">                h = partitionX - <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                l = partitionX + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Comment-4-Median-of-Two-Sorted-Arrays-4-136-2-5"><a href="#Problem-Comment-4-Median-of-Two-Sorted-Arrays-4-136-2-5" class="headerlink" title="Problem Comment 4. Median of Two Sorted Arrays | 4/136  | 2/5"></a>Problem Comment <a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener">4. Median of Two Sorted Arrays</a> | 4/136  | 2/5</h2><ul>
+<li>Binary Search with partitionX and partitionY</li>
+<li>O(log (m+n)).</li>
+</ul>
+<h2 id="Problem-Solution-5-Longest-Palindromic-Substring-5-136-3-5-5"><a href="#Problem-Solution-5-Longest-Palindromic-Substring-5-136-3-5-5" class="headerlink" title="Problem Solution 5. Longest Palindromic Substring | 5/136  | 3.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">5. Longest Palindromic Substring</a> | 5/136  | 3.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s: str)</span> -&gt; str:</span></span><br><span class="line"></span><br><span class="line">        n = len(s)</span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> s</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        longestPalindromeStart, longestPalindromeLength = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        dp = [[<span class="literal">False</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(n)] <span class="keyword">for</span> _ <span class="keyword">in</span> range(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            dp[i][i] = <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="comment"># [n-2, n-1]</span></span><br><span class="line">        <span class="keyword">for</span> start <span class="keyword">in</span> range(n - <span class="number">2</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">for</span> length <span class="keyword">in</span> range(<span class="number">2</span>, n + <span class="number">1</span> - start, <span class="number">1</span>):</span><br><span class="line">                <span class="comment"># end - start + 1 = length</span></span><br><span class="line">                <span class="comment"># end = length + start - 1</span></span><br><span class="line">                <span class="comment"># end &lt; n =&gt; length + start - 1 &lt; n =&gt; length &lt; n + 1 - start</span></span><br><span class="line">                end = length + start - <span class="number">1</span></span><br><span class="line">                dp[start][end] = s[start] == s[end] <span class="keyword">if</span> length == <span class="number">2</span> <span class="keyword">else</span> s[start] == s[end] <span class="keyword">and</span> dp[start + <span class="number">1</span>][end - <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> dp[start][end] <span class="keyword">and</span> end - start + <span class="number">1</span> &gt; longestPalindromeLength:</span><br><span class="line">                    longestPalindromeLength = end - start + <span class="number">1</span></span><br><span class="line">                    longestPalindromeStart = start</span><br><span class="line">        <span class="keyword">return</span> s[longestPalindromeStart: longestPalindromeLength + longestPalindromeStart]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-5-Longest-Palindromic-Substring-5-136-3-5-5-1"><a href="#Problem-Solution-5-Longest-Palindromic-Substring-5-136-3-5-5-1" class="headerlink" title="Problem Solution 5. Longest Palindromic Substring | 5/136  | 3.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">5. Longest Palindromic Substring</a> | 5/136  | 3.5/5</h2><ul>
+<li>Dynamic Programming</li>
+<li>O(n^2)</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/10/26/Leetcode-Training-II-5-136/">http://haihao-sun.github.io/2020/10/26/Leetcode-Training-II-5-136/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode-II/"># training-Leetcode-II</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/10/27/Leetcode-Training-II-10-136/">Leetcode-Training-II-10/136</a>
+            
+            
+            <a class="next" rel="next" href="/2020/10/16/Leetcode-Training-136-150/">Leetcode-Training-136/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

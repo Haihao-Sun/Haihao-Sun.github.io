@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-36/150 | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-36/150</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 15, 2020&nbsp;&nbsp;16:30:34</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://pokemon.gishan.cc/static/i/p/fraxure.jpg" style="width:200px">
+
+<h2 id="Problem-Description-54-Spiral-Matrix-34-150-2-5-5"><a href="#Problem-Description-54-Spiral-Matrix-34-150-2-5-5" class="headerlink" title="Problem Description 54. Spiral Matrix || 34/150 || 2.5/5"></a>Problem Description <a href="https://leetcode.com/problems/spiral-matrix/" target="_blank" rel="noopener">54. Spiral Matrix</a> || 34/150 || 2.5/5</h2><p>
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+</p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[</span><br><span class="line"> [ 1, 2, 3 ],</span><br><span class="line"> [ 4, 5, 6 ],</span><br><span class="line"> [ 7, 8, 9 ]</span><br><span class="line">]</span><br><span class="line">Output: [1,2,3,6,9,8,7,4,5]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-34-150-2-5-5"><a href="#Problem-Solution-34-150-2-5-5" class="headerlink" title="Problem Solution || 34/150 || 2.5/5"></a>Problem Solution || 34/150 || 2.5/5</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">spiralOrder</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ret;</span><br><span class="line">        <span class="keyword">int</span> m = matrix.size();</span><br><span class="line">        <span class="keyword">if</span>(m == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> ret;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> n = matrix[<span class="number">0</span>].size();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> top = <span class="number">0</span>, down = m - <span class="number">1</span>, left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = left; i &lt;= right; i++)&#123;</span><br><span class="line">                ret.push_back(matrix[top][i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(++top &gt; down)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = top; i &lt;= down; i++)&#123;</span><br><span class="line">                ret.push_back(matrix[i][right]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(--right &lt; left)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = right; i &gt;= left; i--)&#123;</span><br><span class="line">                ret.push_back(matrix[down][i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(--down &lt; top)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = down; i &gt;= top;  i--)&#123;</span><br><span class="line">                ret.push_back(matrix[i][left]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(++left &gt; right)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Caution-34-150-2-5-5"><a href="#Caution-34-150-2-5-5" class="headerlink" title="Caution || 34/150 || 2.5/5"></a>Caution || 34/150 || 2.5/5</h2><ul>
+<li>FOUR POINTERS!!</li>
+<li>Make sure that the matrix that we are facing is diminshing</li>
+<li>O(m * n)</li>
+</ul>
+<h2 id="Problem-Description-55-Jump-Game-35-150-2-5-5"><a href="#Problem-Description-55-Jump-Game-35-150-2-5-5" class="headerlink" title="Problem  Description 55. Jump Game || 35/150 || 2.5/5"></a>Problem  Description <a href="https://leetcode.com/problems/jump-game/" target="_blank" rel="noopener">55. Jump Game</a> || 35/150 || 2.5/5</h2><p>
+Given an array of non-negative integers, you are initially positioned at the first index of the array.
+
+<p>Each element in the array represents your maximum jump length at that position.</p>
+<p>Determine if you are able to reach the last index.</p>
+</p>
+Example1:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [2,3,1,1,4]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [3,2,1,0,4]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-35-150-2-5-5"><a href="#Problem-Solution-35-150-2-5-5" class="headerlink" title="Problem Solution || 35/150 || 2.5/5"></a>Problem Solution || 35/150 || 2.5/5</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canJump</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// can_reach is the max that we can reach rigth now</span></span><br><span class="line">        <span class="keyword">int</span> can_reach = nums[<span class="number">0</span>], max_jump = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// if we notice that the current can_reach is smaller than the index, we cannot reach the end</span></span><br><span class="line">            <span class="keyword">if</span>(can_reach &lt; i)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            <span class="comment">// if we know that can_reach == i, we must triger the next jump</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(can_reach == i)&#123;</span><br><span class="line">                max_jump = max(max_jump, nums[i] + i);</span><br><span class="line">                can_reach = max_jump;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// otherwise, we can update the max_jump we can make inside the range can_reach</span></span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                max_jump = max(max_jump, nums[i] + i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Caution-35-150"><a href="#Caution-35-150" class="headerlink" title="Caution || 35/150"></a>Caution || 35/150</h2><ul>
+<li>Greedy, pick the max_jump that we can take inside the current can_reach range</li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Description-56-Merge-Intervals-36-150-2-5"><a href="#Problem-Description-56-Merge-Intervals-36-150-2-5" class="headerlink" title="Problem Description 56. Merge Intervals || 36/150 || 2/5"></a>Problem Description <a href="https://leetcode.com/problems/merge-intervals/" target="_blank" rel="noopener">56. Merge Intervals</a> || 36/150 || 2/5</h2><p>Given a collection of intervals, merge all overlapping intervals.</p>
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: intervals &#x3D; [[1,3],[2,6],[8,10],[15,18]]</span><br><span class="line">Output: [[1,6],[8,10],[15,18]]</span><br><span class="line">Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Problem-Solution-36-150-2-5"><a href="#Problem-Solution-36-150-2-5" class="headerlink" title="Problem Solution || 36/150 || 2/5"></a>Problem Solution || 36/150 || 2/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, intervals: List[List[int]])</span> -&gt; List[List[int]]:</span></span><br><span class="line">        intervals.sort()</span><br><span class="line">        ret = []</span><br><span class="line">        <span class="keyword">for</span> interval <span class="keyword">in</span> intervals:</span><br><span class="line">            <span class="keyword">if</span> len(ret) == <span class="number">0</span> <span class="keyword">or</span> interval[<span class="number">0</span>] &gt; ret[<span class="number">-1</span>][<span class="number">1</span>]:</span><br><span class="line">                ret.append(interval)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ret[<span class="number">-1</span>][<span class="number">1</span>] = max(ret[<span class="number">-1</span>][<span class="number">1</span>], interval[<span class="number">1</span>])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Caution"><a href="#Caution" class="headerlink" title="Caution"></a>Caution</h2><ul>
+<li>Clever Sorting to merge intervals! </li>
+<li>O(n logn)</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/15/Leetcode-Training-36-150/">http://haihao-sun.github.io/2020/09/15/Leetcode-Training-36-150/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode/"># training-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/16/Leetcode-Training-39-150/">Leetcode-Training-39/150</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/14/Leetcode-Training-33-150/">Leetcode-Training-33/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

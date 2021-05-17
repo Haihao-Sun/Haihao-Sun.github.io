@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>How to watch youtube without annoying ADs? | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">How to watch youtube without annoying ADs?</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 28, 2020&nbsp;&nbsp;19:59:22</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><img src="https://i.imgur.com/i0Dt0Aw.png" alt="kabishou"></p>
+<h2 id="Watching-Youtube-without-ADs"><a href="#Watching-Youtube-without-ADs" class="headerlink" title="Watching Youtube without ADs"></a>Watching Youtube without ADs</h2><p>While enjoying watching Youtube, I always get annoyed by so many advertisements popping out, <br> and my finger has already been tired of clicking the ‘Skip’ button. Fortunately, there is a soultion to this problem,and it is super super easy. </p>
+<h2 id="High-level-description-for-3-step-blocking-AD-recipe"><a href="#High-level-description-for-3-step-blocking-AD-recipe" class="headerlink" title="High level description for 3-step blocking AD recipe:"></a>High level description for 3-step blocking AD recipe:</h2><h3 id="step1-Downloading-TamperMonkey"><a href="#step1-Downloading-TamperMonkey" class="headerlink" title="step1: Downloading TamperMonkey"></a>step1: Downloading TamperMonkey</h3><p>TamperMonkey is a script manager which helps you utilize the scripts which <br> are extremely handy.</p>
+<h3 id="step2-Downloading-Hide-youtube-google-AD-script"><a href="#step2-Downloading-Hide-youtube-google-AD-script" class="headerlink" title="step2: Downloading Hide youtube google AD script"></a>step2: Downloading Hide youtube google AD script</h3><p>This is a legal and safe script which allows you to skip all the ADs in <br> one shot. I promise you this is very easy, and no coding is involved.</p>
+<h3 id="step3-Turn-on-the-script-and-enjoy-watching-AD-free-youtube"><a href="#step3-Turn-on-the-script-and-enjoy-watching-AD-free-youtube" class="headerlink" title="step3: Turn on the script, and enjoy watching AD-free youtube!"></a>step3: Turn on the script, and enjoy watching AD-free youtube!</h3><p>Try your youtube without ADs! </p>
+<h2 id="Detailed-Implementation-for-the-recipe-shown-above"><a href="#Detailed-Implementation-for-the-recipe-shown-above" class="headerlink" title="Detailed Implementation for the recipe shown above"></a>Detailed Implementation for the recipe shown above</h2><h3 id="step1-Downloading-TamperMonkey-1"><a href="#step1-Downloading-TamperMonkey-1" class="headerlink" title="step1: Downloading TamperMonkey"></a>step1: Downloading TamperMonkey</h3><p>Here is the link to the downloading TamperMonkey in chrome extension, and <br> this is absoultely free and safe.</p>
+<p><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=enm" target="_blank" rel="noopener">Downloading TamperMonkey in google chrome</a></p>
+<p>Once you open the webpage, simply add the TamperMonkey by clicking “add” at<br> the top right, I promise this is extremely straightforward. </p>
+<p><a href="http://google.com.au/" target="_blank" rel="noopener"><img src="https://i.imgur.com/Ochff9h.png"></a></p>
+<h3 id="step2-Downloading-the-Hide-Youtube-AD-script"><a href="#step2-Downloading-the-Hide-Youtube-AD-script" class="headerlink" title="step2: Downloading the Hide Youtube AD script"></a>step2: Downloading the Hide Youtube AD script</h3><p>To download the script, we need to visit <a href="https://greasyfork.org/en" target="_blank" rel="noopener">greasyforke</a>  which is a website for sharing useful scripts.</p>
+<p>After a quick search, we can download the script here through this link<br>(<a href="https://greasyfork.org/en/scripts/40178-youtube-ad-skip" target="_blank" rel="noopener">https://greasyfork.org/en/scripts/40178-youtube-ad-skip</a>). Click Install Script, and you should be able to see that in the TamperMonkey Extension.</p>
+<p>You can also checkout these two similar scripts!<br><a href="https://greasyfork.org/en/scripts/9165-auto-close-youtube-ads" target="_blank" rel="noopener">Auto close Youtube ADs</a><br><a href="https://greasyfork.org/en/scripts/386925-youtube-ad-cleaner-include-non-skippable-ads-works" target="_blank" rel="noopener">Youtube ADs cleaner</a></p>
+<h3 id="step3-Turn-on-the-extension-and-start-watching-youtube-without-ADs"><a href="#step3-Turn-on-the-extension-and-start-watching-youtube-without-ADs" class="headerlink" title="step3: Turn on the extension and start watching youtube without ADs!"></a>step3: Turn on the extension and start watching youtube without ADs!</h3><p>The last step, turn on the extension, is also straightforward. Simply open google <br>and then find the dashboard, turn on the scipt that we just downloaded.</p>
+<p><img src="https://i.imgur.com/ATQllon.jpg" alt="instruction"></p>
+<p>Congrats! ALL DONE! Enjoy your youtube without ADs!</p>
+<p><a href="https://www.youtube.com" target="_blank" rel="noopener">Exciting Moment, Start watching today!</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/06/28/How-to-watch-youtube-without-annoying-ADs/">http://haihao-sun.github.io/2020/06/28/How-to-watch-youtube-without-annoying-ADs/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/tech/"># tech</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/06/29/Leetcode-322-Coin-Change/">Leetocde_322_Coin_Change</a>
+            
+            
+            <a class="next" rel="next" href="/2020/06/28/Leetcode-72-Edit-Distance/">Leetcode_72_Edit_Distance</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

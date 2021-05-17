@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-96/150 | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-96/150</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 5, 2020&nbsp;&nbsp;15:39:42</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://sg.portal-pokemon.com/play/resources/pokedex/img/pm/d4d0ef0113d937d63f150354bd7a1869b36f33ea.png" style="width:200px">
+
+<h2 id="Problem-Description-207-Course-Schedule-94-150-3-5"><a href="#Problem-Description-207-Course-Schedule-94-150-3-5" class="headerlink" title="Problem Description 207. Course Schedule | 94/150  | 3/5"></a>Problem Description <a href="https://leetcode.com/problems/course-schedule/" target="_blank" rel="noopener">207. Course Schedule</a> | 94/150  | 3/5</h2><p>
+There are a total of numCourses courses you have to take, labeled from 0 to numCourses-1.
+
+<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]</p>
+<p>Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?</p>
+<p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: numCourses &#x3D; 2, prerequisites &#x3D; [[1,0],[0,1]]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: There are a total of 2 courses to take. </span><br><span class="line">             To take course 1 you should have finished course 0, and to take course 0 you should</span><br><span class="line">             also have finished course 1. So it is impossible.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-207-Course-Schedule-94-150-3-5"><a href="#Problem-Solution-207-Course-Schedule-94-150-3-5" class="headerlink" title="Problem Solution 207. Course Schedule | 94/150  | 3/5"></a>Problem Solution <a href="https://leetcode.com/problems/course-schedule/" target="_blank" rel="noopener">207. Course Schedule</a> | 94/150  | 3/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canFinish</span><span class="params">(self, numCourses: int, prerequisites: List[List[int]])</span> -&gt; bool:</span></span><br><span class="line">        </span><br><span class="line">        indegree = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(numCourses)]</span><br><span class="line">        graph = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> range(numCourses)]</span><br><span class="line"></span><br><span class="line">        q = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> [pre, cur] <span class="keyword">in</span> prerequisites:</span><br><span class="line">            graph[cur].append(pre) </span><br><span class="line">            indegree[pre] += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(indegree)):</span><br><span class="line">            <span class="keyword">if</span> indegree[i] == <span class="number">0</span>:</span><br><span class="line">                q.append(i)</span><br><span class="line">        </span><br><span class="line">        i, l = <span class="number">0</span>, len(q)</span><br><span class="line">        <span class="keyword">while</span>(i &lt; l):</span><br><span class="line">            cur_course = q[i]</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(graph[cur_course])):</span><br><span class="line">                indegree[graph[cur_course][j]] -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> indegree[graph[cur_course][j]] == <span class="number">0</span>:</span><br><span class="line">                    q.append(graph[cur_course][j])</span><br><span class="line">            </span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            l = len(q)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> len(q) == numCourses</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Caution-207-Course-Schedule-94-150-3-5"><a href="#Problem-Caution-207-Course-Schedule-94-150-3-5" class="headerlink" title="Problem Caution 207. Course Schedule | 94/150  | 3/5"></a>Problem Caution <a href="https://leetcode.com/problems/course-schedule/" target="_blank" rel="noopener">207. Course Schedule</a> | 94/150  | 3/5</h2><ul>
+<li>Implementing Topological Sorting using indegree and queue, when the indegree is 0, we can reach it! </li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Description-208-Implement-Trie-Prefix-Tree-95-150-3-5"><a href="#Problem-Description-208-Implement-Trie-Prefix-Tree-95-150-3-5" class="headerlink" title="Problem Description 208. Implement Trie (Prefix Tree) | 95/150  | 3/5"></a>Problem Description <a href="https://leetcode.com/problems/implement-trie-prefix-tree/" target="_blank" rel="noopener">208. Implement Trie (Prefix Tree)</a> | 95/150  | 3/5</h2><p>
+
+<p>Implement a trie with insert, search, and startsWith methods.</p>
+</p>
+
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Trie trie &#x3D; new Trie();</span><br><span class="line"></span><br><span class="line">trie.insert(&quot;apple&quot;);</span><br><span class="line">trie.search(&quot;apple&quot;);   &#x2F;&#x2F; returns true</span><br><span class="line">trie.search(&quot;app&quot;);     &#x2F;&#x2F; returns false</span><br><span class="line">trie.startsWith(&quot;app&quot;); &#x2F;&#x2F; returns true</span><br><span class="line">trie.insert(&quot;app&quot;);   </span><br><span class="line">trie.search(&quot;app&quot;);     &#x2F;&#x2F; returns true</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-208-Implement-Trie-Prefix-Tree-95-150-3-5"><a href="#Problem-Solution-208-Implement-Trie-Prefix-Tree-95-150-3-5" class="headerlink" title="Problem Solution 208. Implement Trie (Prefix Tree) | 95/150  | 3/5"></a>Problem Solution <a href="https://leetcode.com/problems/implement-trie-prefix-tree/" target="_blank" rel="noopener">208. Implement Trie (Prefix Tree)</a> | 95/150  | 3/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, c)</span>:</span></span><br><span class="line">        self.is_word = <span class="literal">False</span></span><br><span class="line">        self.mp = [<span class="literal">None</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">26</span>)]</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Initialize your data structure here.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.root = Node(<span class="string">'*'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, word: str)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Inserts a word into the trie.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        focus_node = self.root</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">            cur_char = ord(word[i]) - ord(<span class="string">'a'</span>)</span><br><span class="line">            <span class="keyword">if</span> focus_node.mp[cur_char] != <span class="literal">None</span>:</span><br><span class="line">                focus_node = focus_node.mp[cur_char]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                focus_node.mp[cur_char] = Node(cur_char)</span><br><span class="line">                focus_node = focus_node.mp[cur_char]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> i == len(word) - <span class="number">1</span>:</span><br><span class="line">                focus_node.is_word = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, word: str)</span> -&gt; bool:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Returns if the word is in the trie.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        focus_node = self.root</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">            cur_char = ord(word[i]) - ord(<span class="string">'a'</span>)</span><br><span class="line">            <span class="keyword">if</span> focus_node.mp[cur_char] == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                focus_node = focus_node.mp[cur_char]</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> i == len(word) - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> focus_node.is_word</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> focus_node.is_word</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">startsWith</span><span class="params">(self, prefix: str)</span> -&gt; bool:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Returns if there is any word in the trie that starts with the given prefix.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        </span><br><span class="line">        focus_node = self.root</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(prefix)):</span><br><span class="line">            cur_char = ord(prefix[i]) - ord(<span class="string">'a'</span>)</span><br><span class="line">            <span class="keyword">if</span> focus_node.mp[cur_char] == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                focus_node = focus_node.mp[cur_char]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Caution-208-Implement-Trie-Prefix-Tree-95-150-3-5"><a href="#Problem-Caution-208-Implement-Trie-Prefix-Tree-95-150-3-5" class="headerlink" title="Problem Caution 208. Implement Trie (Prefix Tree) | 95/150  | 3/5"></a>Problem Caution <a href="https://leetcode.com/problems/implement-trie-prefix-tree/" target="_blank" rel="noopener">208. Implement Trie (Prefix Tree)</a> | 95/150  | 3/5</h2><ul>
+<li>Implement Trie data structure with node class, use mp to store the next_node</li>
+<li>ord -&gt; char to int</li>
+</ul>
+<h2 id="Problem-Description-210-Course-Schedule-II-96-150-3-5"><a href="#Problem-Description-210-Course-Schedule-II-96-150-3-5" class="headerlink" title="Problem Description 210. Course Schedule II | 96/150  | 3/5"></a>Problem Description <a href="https://leetcode.com/problems/course-schedule-ii/" target="_blank" rel="noopener">210. Course Schedule II</a> | 96/150  | 3/5</h2><p>
+There are a total of n courses you have to take labelled from 0 to n - 1.
+
+<p>Some courses may have prerequisites, for example, if prerequisites[i] = [ai, bi] this means you must take the course bi before the course ai.</p>
+<p>Given the total number of courses numCourses and a list of the prerequisite pairs, return the ordering of courses you should take to finish all courses.</p>
+<p>If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.</p>
+</p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: numCourses &#x3D; 4, prerequisites &#x3D; [[1,0],[2,0],[3,1],[3,2]]</span><br><span class="line">Output: [0,2,1,3]</span><br><span class="line">Explanation: There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0.</span><br><span class="line">So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3].</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-210-Course-Schedule-II-96-150-3-5"><a href="#Problem-Solution-210-Course-Schedule-II-96-150-3-5" class="headerlink" title="Problem Solution 210. Course Schedule II | 96/150  | 3/5"></a>Problem Solution <a href="https://leetcode.com/problems/course-schedule-ii/" target="_blank" rel="noopener">210. Course Schedule II</a> | 96/150  | 3/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findOrder</span><span class="params">(self, numCourses: int, prerequisites: List[List[int]])</span> -&gt; List[int]:</span></span><br><span class="line">        indegree = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(numCourses)]</span><br><span class="line">        graph = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> range(numCourses)]</span><br><span class="line"></span><br><span class="line">        q = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> [pre, cur] <span class="keyword">in</span> prerequisites:</span><br><span class="line">            graph[cur].append(pre) </span><br><span class="line">            indegree[pre] += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(indegree)):</span><br><span class="line">            <span class="keyword">if</span> indegree[i] == <span class="number">0</span>:</span><br><span class="line">                q.append(i)</span><br><span class="line">        </span><br><span class="line">        i, l = <span class="number">0</span>, len(q)</span><br><span class="line">        <span class="keyword">while</span>(i &lt; l):</span><br><span class="line">            cur_course = q[i]</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(graph[cur_course])):</span><br><span class="line">                indegree[graph[cur_course][j]] -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> indegree[graph[cur_course][j]] == <span class="number">0</span>:</span><br><span class="line">                    q.append(graph[cur_course][j])</span><br><span class="line">                    l += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> len(q) == numCourses:</span><br><span class="line">            <span class="keyword">return</span> q</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Caution-210-Course-Schedule-II-96-150-3-5"><a href="#Problem-Caution-210-Course-Schedule-II-96-150-3-5" class="headerlink" title="Problem Caution 210. Course Schedule II | 96/150  | 3/5"></a>Problem Caution <a href="https://leetcode.com/problems/course-schedule-ii/" target="_blank" rel="noopener">210. Course Schedule II</a> | 96/150  | 3/5</h2><ul>
+<li>Topological Sorting</li>
+<li>O(n)</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/10/05/Leetcode-Training-96-150/">http://haihao-sun.github.io/2020/10/05/Leetcode-Training-96-150/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode/"># training-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/10/05/Leetcode-1340-Jump-Game-V/">Leetcode-1340-Jump-Game-V</a>
+            
+            
+            <a class="next" rel="next" href="/2020/10/04/Leetcode-309-stock-with-cooldown/">Leetcode-309-stock-with-cooldown</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

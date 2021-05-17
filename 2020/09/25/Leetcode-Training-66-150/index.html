@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-66/150 | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-66/150</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 25, 2020&nbsp;&nbsp;22:48:54</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://vignette.wikia.nocookie.net/pokemon/images/d/d8/Ultra_Guardian_Lillie%27s_Ride_Altaria.png/revision/latest?cb=20180208164958" style="width:200px">
+
+
+<h2 id="Problem-Description-128-Longest-Consecutive-Sequence-64-150-4-5"><a href="#Problem-Description-128-Longest-Consecutive-Sequence-64-150-4-5" class="headerlink" title="Problem Description 128. Longest Consecutive Sequence | 64/150  | 4/5"></a>Problem Description <a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener">128. Longest Consecutive Sequence</a> | 64/150  | 4/5</h2><p>
+Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
+
+<p>Your algorithm should run in O(n) complexity.</p>
+</p>
+
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [100, 4, 200, 1, 3, 2]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-128-Longest-Consecutive-Sequence-64-150-4-5"><a href="#Problem-Solution-128-Longest-Consecutive-Sequence-64-150-4-5" class="headerlink" title="Problem Solution 128. Longest Consecutive Sequence | 64/150  | 4/5"></a>Problem Solution <a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener">128. Longest Consecutive Sequence</a> | 64/150  | 4/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestConsecutive</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        </span><br><span class="line">        ret = <span class="number">0</span></span><br><span class="line">        mp = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> num <span class="keyword">in</span> mp:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left_max = mp[num - <span class="number">1</span>][<span class="number">0</span>] <span class="keyword">if</span> ((num - <span class="number">1</span>) <span class="keyword">in</span> mp <span class="keyword">and</span> mp[num - <span class="number">1</span>][<span class="number">1</span>] &lt;= num - <span class="number">1</span>) <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">                right_max = mp[num + <span class="number">1</span>][<span class="number">0</span>] <span class="keyword">if</span> ((num + <span class="number">1</span>) <span class="keyword">in</span> mp <span class="keyword">and</span> mp[num + <span class="number">1</span>][<span class="number">1</span>] &gt;= num + <span class="number">1</span>) <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> left_max == <span class="number">0</span> <span class="keyword">and</span> right_max == <span class="number">0</span>:</span><br><span class="line">                    mp[num] = [<span class="number">1</span>, num]</span><br><span class="line">                <span class="keyword">elif</span> left_max != <span class="number">0</span> <span class="keyword">and</span> right_max == <span class="number">0</span>:</span><br><span class="line">                    left_num = mp[num - <span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line">                    cur_len = mp[num - <span class="number">1</span>][<span class="number">0</span>] + <span class="number">1</span></span><br><span class="line">                    mp[left_num] = [cur_len, num]</span><br><span class="line">                    mp[num] = [cur_len, left_num]</span><br><span class="line">                    <span class="keyword">if</span> num - <span class="number">1</span> != left_num:</span><br><span class="line">                        mp.pop(num<span class="number">-1</span>, <span class="literal">None</span>)</span><br><span class="line">                <span class="keyword">elif</span> left_max == <span class="number">0</span> <span class="keyword">and</span> right_max != <span class="number">0</span>:</span><br><span class="line">                    right_num = mp[num + <span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line">                    cur_len = mp[num + <span class="number">1</span>][<span class="number">0</span>] + <span class="number">1</span></span><br><span class="line">                    mp[right_num] = [cur_len, num]</span><br><span class="line">                    mp[num] = [cur_len, right_num]</span><br><span class="line">                    <span class="keyword">if</span> num + <span class="number">1</span> != right_num:</span><br><span class="line">                        mp.pop(num+<span class="number">1</span>, <span class="literal">None</span>)</span><br><span class="line">                <span class="keyword">elif</span> left_max != <span class="number">0</span> <span class="keyword">and</span> right_max != <span class="number">0</span>:</span><br><span class="line">                    left_num = mp[num - <span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line">                    right_num = mp[num + <span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line">                    cur_len = mp[num + <span class="number">1</span>][<span class="number">0</span>] + <span class="number">1</span> + mp[num - <span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">                    mp[left_num] = [cur_len , right_num]</span><br><span class="line">                    mp[right_num] = [cur_len , left_num]</span><br><span class="line">                    <span class="keyword">if</span> num - <span class="number">1</span> != left_num:</span><br><span class="line">                        mp.pop(num<span class="number">-1</span>, <span class="literal">None</span>)</span><br><span class="line">                    <span class="keyword">if</span> num + <span class="number">1</span> != right_num:</span><br><span class="line">                        mp.pop(num+<span class="number">1</span>, <span class="literal">None</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> mp.items():</span><br><span class="line">            ret = max(value[<span class="number">0</span>], ret)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Problem-Caution-128-Longest-Consecutive-Sequence-64-150-4-5"><a href="#Problem-Caution-128-Longest-Consecutive-Sequence-64-150-4-5" class="headerlink" title="Problem Caution 128. Longest Consecutive Sequence | 64/150  | 4/5"></a>Problem Caution <a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener">128. Longest Consecutive Sequence</a> | 64/150  | 4/5</h2><ul>
+<li><p>We must solve this in O(n) -&gt; we have to use hashmap data structure</p>
+</li>
+<li><p>Logic Explained as below, we have 4 situations when encountering a new number, and just solve each situation as follows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#39;&#39;&#39;     </span><br><span class="line">        mp[num] &#x3D; [cur_len, cur_end &#x2F; cur_start]</span><br><span class="line">        # I see a number num, I check in the dictionary for num, num + 1, and num - 1</span><br><span class="line">        # if num exists: continue</span><br><span class="line">        # if num + 1 exists, right_max &#x3D; mp[num + 1][0] + 1</span><br><span class="line">        # if num - 1 exists, left_max &#x3D; dp[num - 1][0] + 1</span><br><span class="line">        # if num + 1 exists, num - 1 exists:</span><br><span class="line">            we can combine those two, len &#x3D; mp[num + 1][0] + 1 + dp[num - 1][0]</span><br><span class="line">                                       left_num &#x3D; dp[num - 1][1]</span><br><span class="line">                                       right_num &#x3D; dp[num + 1][1]</span><br><span class="line">                                       mp[left_num] &#x3D; [len, right_num]</span><br><span class="line">                                       mp[right_num] &#x3D; [len, left_num]</span><br><span class="line">                                       remove mp[num + 1] and np[num - 1] (del my_dict[&#39;key&#39;], my_dict.pop(&#39;key&#39;, None))</span><br><span class="line"></span><br><span class="line">        # if num + 1 exists, num - 1 does not exist:</span><br><span class="line">            we can do mp[num] &#x3D; [1 + mp[num + 1][0], mp[num+1][1]]</span><br><span class="line">                      mp[mp[num+1][1]] &#x3D; [1 + mp[num + 1][0], num]</span><br><span class="line">                      remove mp[num + 1] (del my_dict[&#39;key&#39;], my_dict.pop(&#39;key&#39;, None))</span><br><span class="line">        # if num - 1 exists, num + 1 does not exist, we do the reverse</span><br><span class="line"></span><br><span class="line">        # if nothing exists, we do:</span><br><span class="line">            mp[num] &#x3D; [1, num]</span><br><span class="line">        </span><br><span class="line">        mp[num] &#x3D; [cur_len, cur_end &#x2F; cur_start]</span><br><span class="line">&#39;&#39;&#39;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>O(n)</p>
+</li>
+</ul>
+<h2 id="Problem-Description-130-Surrounded-Regions-65-150-4-5"><a href="#Problem-Description-130-Surrounded-Regions-65-150-4-5" class="headerlink" title="Problem Description 130. Surrounded Regions | 65/150  | 4/5"></a>Problem Description <a href="https://leetcode.com/problems/surrounded-regions/" target="_blank" rel="noopener">130. Surrounded Regions</a> | 65/150  | 4/5</h2><p>
+Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
+
+<p>A region is captured by flipping all ‘O’s into ‘X’s in that surrounded region.</p>
+<p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">X X X X</span><br><span class="line">X O O X</span><br><span class="line">X X O X</span><br><span class="line">X O X X</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">X X X X</span><br><span class="line">X X X X</span><br><span class="line">X X X X</span><br><span class="line">X O X X</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-130-Surrounded-Regions-65-150-4-5"><a href="#Problem-Solution-130-Surrounded-Regions-65-150-4-5" class="headerlink" title="Problem Solution 130. Surrounded Regions | 65/150  | 4/5"></a>Problem Solution <a href="https://leetcode.com/problems/surrounded-regions/" target="_blank" rel="noopener">130. Surrounded Regions</a> | 65/150  | 4/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">solve</span><span class="params">(self, board: List[List[str]])</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> len(board) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        m, n = len(board), len(board[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(r, c)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> r &lt; <span class="number">0</span> <span class="keyword">or</span> r &gt;= m <span class="keyword">or</span> c &lt; <span class="number">0</span> <span class="keyword">or</span> c &gt;= n:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">elif</span> board[r][c] == <span class="string">'X'</span> <span class="keyword">or</span> board[r][c] == <span class="string">'Z'</span>:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                board[r][c] = <span class="string">'Z'</span></span><br><span class="line">                DFS(r + <span class="number">1</span>, c)</span><br><span class="line">                DFS(r, c + <span class="number">1</span>)</span><br><span class="line">                DFS(r - <span class="number">1</span>, c)</span><br><span class="line">                DFS(r, c - <span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            DFS(i, <span class="number">0</span>)</span><br><span class="line">            DFS(i, n - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">            DFS(<span class="number">0</span>, j)</span><br><span class="line">            DFS(m - <span class="number">1</span>, j)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">                board[i][j] = <span class="string">'O'</span> <span class="keyword">if</span> board[i][j] == <span class="string">'Z'</span> <span class="keyword">else</span> <span class="string">'X'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Caution-130-Surrounded-Regions-65-150-4-5"><a href="#Problem-Caution-130-Surrounded-Regions-65-150-4-5" class="headerlink" title="Problem Caution 130. Surrounded Regions | 65/150  | 4/5"></a>Problem Caution <a href="https://leetcode.com/problems/surrounded-regions/" target="_blank" rel="noopener">130. Surrounded Regions</a> | 65/150  | 4/5</h2><ul>
+<li>DFS, since we are seraching the connected component in the graph</li>
+<li>There might be multiple ways to solve it, but in order to keep the code simple, we can do the following:</li>
+<li>Step1: search from the border, and set connected O to all be Z</li>
+<li>Step2: traverse the board, if we see Z, set it to be O, otherwise it is a X</li>
+<li>O(m * n)</li>
+</ul>
+<h2 id="Problem-Description-131-Palindrome-Partitioning-66-150-4-5"><a href="#Problem-Description-131-Palindrome-Partitioning-66-150-4-5" class="headerlink" title="Problem Description 131. Palindrome Partitioning | 66/150  | 4/5"></a>Problem Description <a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="noopener">131. Palindrome Partitioning</a> | 66/150  | 4/5</h2><p>
+Given a string s, partition s such that every substring of the partition is a palindrome.
+
+<p>Return all possible palindrome partitioning of s.</p>
+</p>
+
+
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;aab&quot;</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [&quot;aa&quot;,&quot;b&quot;],</span><br><span class="line">  [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-131-Palindrome-Partitioning-66-150-4-5"><a href="#Problem-Solution-131-Palindrome-Partitioning-66-150-4-5" class="headerlink" title="Problem Solution 131. Palindrome Partitioning | 66/150  | 4/5"></a>Problem Solution <a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="noopener">131. Palindrome Partitioning</a> | 66/150  | 4/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(self, s: str)</span> -&gt; List[List[str]]:</span></span><br><span class="line">        </span><br><span class="line">        <span class="string">''' </span></span><br><span class="line"><span class="string">        STEP1, DP array DP[i][j] = True if str[i:j] is palindrome</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        STEP2, DFS, generate all the possible partitioning</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line"></span><br><span class="line">        m = len(s)</span><br><span class="line">        dp = [[<span class="literal">True</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(m)] <span class="keyword">for</span> _ <span class="keyword">in</span> range(m)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> length <span class="keyword">in</span> range(<span class="number">2</span>, m + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> start <span class="keyword">in</span> range(<span class="number">0</span>, m, <span class="number">1</span>):</span><br><span class="line">                end = start + length - <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> end &gt;= m:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                dp[start][end] = dp[start+<span class="number">1</span>][end<span class="number">-1</span>] <span class="keyword">and</span> s[start] == s[end]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        global_ret = []</span><br><span class="line"></span><br><span class="line">        <span class="comment"># idx, we start(can pick idx)</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(cur_ret, idx)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> idx == m:</span><br><span class="line">                <span class="comment"># The List here is important since we need to create a new list to append</span></span><br><span class="line">                global_ret.append(list(cur_ret))</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(idx, m):</span><br><span class="line">                    <span class="keyword">if</span> dp[idx][i]:</span><br><span class="line">                        cur_ret.append(s[idx: i + <span class="number">1</span>])</span><br><span class="line">                        DFS(cur_ret, i + <span class="number">1</span>)</span><br><span class="line">                        cur_ret.pop()</span><br><span class="line">        </span><br><span class="line">        DFS([], <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> global_ret</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Caution-131-Palindrome-Partitioning-66-150-4-5"><a href="#Problem-Caution-131-Palindrome-Partitioning-66-150-4-5" class="headerlink" title="Problem Caution 131. Palindrome Partitioning | 66/150  | 4/5"></a>Problem Caution <a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="noopener">131. Palindrome Partitioning</a> | 66/150  | 4/5</h2><ul>
+<li>DP and DFS</li>
+<li>O(n * 2^n) since the backtracking</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/25/Leetcode-Training-66-150/">http://haihao-sun.github.io/2020/09/25/Leetcode-Training-66-150/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode/"># training-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/26/Leetcode-Training-69-150/">Leetcode-Training-69/150</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/24/Leetcode-Training-63-150/">Leetcode-Training-63/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

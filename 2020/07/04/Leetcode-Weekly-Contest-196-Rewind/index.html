@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Weekly-Contest-196-Rewind | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Weekly-Contest-196-Rewind</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 4, 2020&nbsp;&nbsp;22:58:23</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Contest/">Contest</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://assets1.ignimgs.com/2019/03/01/2-rayquaza-1551478019293.png" alt="Lombre" style="width:200px;"/>
+
+<p><a href="https://leetcode.com/contest/weekly-contest-196/" target="_blank" rel="noopener">link to leetcode_contest_196</a></p>
+<h1 id="Problem-A-Description"><a href="#Problem-A-Description" class="headerlink" title="Problem_A Description:"></a>Problem_A Description:</h1><p>Given an array of numbers arr. A sequence of numbers is called an arithmetic progression if the difference between any two consecutive elements is the same.
+Return true if the array can be rearranged to form an arithmetic progression, otherwise, return false.</p>
+
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: arr &#x3D; [3,5,1]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: We can reorder the elements as [1,3,5] or [5,3,1] </span><br><span class="line">with differences 2 and -2 respectively, between each consecutive elements.</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: arr &#x3D; [1,2,4]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: There is no way to reorder the elements to obtain an arithmetic progression.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> boolean <span class="title">canMakeArithmeticProgression</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-A-Discussion"><a href="#Problem-A-Discussion" class="headerlink" title="Problem_A Discussion:"></a>Problem_A Discussion:</h2><h3 id="category-Data-Structure-Array-gt-fire-pokemon"><a href="#category-Data-Structure-Array-gt-fire-pokemon" class="headerlink" title="category: Data Structure(Array) -&gt; fire pokemon!"></a>category: Data Structure(Array) -&gt; fire pokemon!</h3><img src="https://cdn.bulbagarden.net/upload/thumb/9/9b/155Cyndaquil.png/1200px-155Cyndaquil.png" alt="Lombre" style="width:200px;"/>
+
+<h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition:"></a>Intuition:</h3><p>
+Not too much to say here, we recall that if the input array can be rearranged to form an arithmetic progression, we can basically find the common difference, and then check if the difference between all the consecutive elements have that common difference.
+</p>
+
+
+<h2 id="Problem-A-Solution-O-n"><a href="#Problem-A-Solution-O-n" class="headerlink" title="Problem_A Solution: O(n)"></a>Problem_A Solution: O(n)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canMakeArithmeticProgression</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        sort(arr.begin(), arr.end());</span><br><span class="line">        <span class="keyword">int</span> dif = arr[<span class="number">1</span>] - arr[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i] - arr[i<span class="number">-1</span>] != dif)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Problem-B-Description"><a href="#Problem-B-Description" class="headerlink" title="Problem_B Description:"></a>Problem_B Description:</h1><p>We have a wooden plank of the length n units. Some ants are walking on the plank, each ant moves with speed 1 unit per second. Some of the ants move to the left, the other move to the right.<br>
+When two ants moving in two different directions meet at some point, they change their directions and continue moving again. Assume changing directions doesn't take any additional time.<br>
+When an ant reaches one end of the plank at a time t, it falls out of the plank imediately.<br>
+Given an integer n and two integer arrays left and right, the positions of the ants moving to the left and the right. Return the moment when the last ant(s) fall out of the plank.</p>
+
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: n &#x3D; 4, left &#x3D; [4,3], right &#x3D; [0,1]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: In the image above:</span><br><span class="line">-The ant at index 0 is named A and going to the right.</span><br><span class="line">-The ant at index 1 is named B and going to the right.</span><br><span class="line">-The ant at index 3 is named C and going to the left.</span><br><span class="line">-The ant at index 4 is named D and going to the left.</span><br><span class="line">Note that the last moment when an ant was on the plank is t &#x3D; 4 second, after that it falls imediately out of the plank. (i.e. We can say that at t &#x3D; 4.0000000001, there is no ants on the plank).</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n &#x3D; 7, left &#x3D; [], right &#x3D; [0,1,2,3,4,5,6,7]</span><br><span class="line">Output: 7</span><br><span class="line">Explanation: All ants are going to the right, the ant at index 0 needs 7 seconds to fall.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLastMoment</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[] left, <span class="keyword">int</span>[] right)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-B-Discussion"><a href="#Problem-B-Discussion" class="headerlink" title="Problem_B Discussion:"></a>Problem_B Discussion:</h2><h3 id="category-Data-Structure-Array-gt-fire-pokemon-1"><a href="#category-Data-Structure-Array-gt-fire-pokemon-1" class="headerlink" title="category: Data Structure(Array) -&gt; fire pokemon!"></a>category: Data Structure(Array) -&gt; fire pokemon!</h3><img src="https://img.pokemondb.net/artwork/large/vulpix.jpg" alt="Lombre" style="width:200px;"/>
+
+<h3 id="Intuition-1"><a href="#Intuition-1" class="headerlink" title="Intuition:"></a>Intuition:</h3><p>
+While I should admit that this problem looks inintimidating at the first glance, we need to find the pattern to solve this probelm. It is easy to solve the time for a specifi ant to reach the end, however, the difficult part comes in when the ant changes directions. <br><br>
+In order to solve this problem, we need to observe that even if two ants change their directions after meeting at one point, the maximum time for both of them to reach the end actually does not change. <br>
+
+<br>
+Let's say that left_ant takes left_time to reach the right end, and right_ant takes right_time to reach left end. If they change the direction, left_ant becomes right ant, and it still needs right_time to reach left end. Similar thing happens at the left_ant. Therefore the maximum time for all ants to reach the end, is just the max(time for  all left_moving ants reach left end, time for all right_moving ants reach right_end). More specifically, the time for all left_moving ants reach the right is just the last element for left array, similar thing for the right array.
+</p>
+
+
+<h2 id="Problem-B-Solution-O-nlogn"><a href="#Problem-B-Solution-O-nlogn" class="headerlink" title="Problem_B Solution: O(nlogn)"></a>Problem_B Solution: O(nlogn)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getLastMoment</span><span class="params">(<span class="keyword">int</span> n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; left, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; right)</span> </span>&#123;</span><br><span class="line">        sort(left.begin(), left.end());</span><br><span class="line">        sort(right.begin(), right.end());</span><br><span class="line">        <span class="keyword">int</span> left_time = left.size() == <span class="number">0</span> ? <span class="number">0</span> : left[left.size()<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">int</span> right_time = right.size() == <span class="number">0</span> ? <span class="number">0</span> : n - right[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">return</span> max(left_time, right_time);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h1 id="Problem-C-Description"><a href="#Problem-C-Description" class="headerlink" title="Problem_C Description:"></a>Problem_C Description:</h1><p>Given a rows * columns matrix mat of ones and zeros, return how many submatrices have all ones.</p>
+
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Input: mat &#x3D; [[1,0,1],</span><br><span class="line">              [1,1,0],</span><br><span class="line">              [1,1,0]]</span><br><span class="line">Output: 13</span><br><span class="line">Explanation:</span><br><span class="line">There are 6 rectangles of side 1x1.</span><br><span class="line">There are 2 rectangles of side 1x2.</span><br><span class="line">There are 3 rectangles of side 2x1.</span><br><span class="line">There is 1 rectangle of side 2x2. </span><br><span class="line">There is 1 rectangle of side 3x1.</span><br><span class="line">Total number of rectangles &#x3D; 6 + 2 + 3 + 1 + 1 &#x3D; 13.</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Input: mat &#x3D; [[0,1,1,0],</span><br><span class="line">              [0,1,1,1],</span><br><span class="line">              [1,1,1,0]]</span><br><span class="line">Output: 24</span><br><span class="line">Explanation:</span><br><span class="line">There are 8 rectangles of side 1x1.</span><br><span class="line">There are 5 rectangles of side 1x2.</span><br><span class="line">There are 2 rectangles of side 1x3. </span><br><span class="line">There are 4 rectangles of side 2x1.</span><br><span class="line">There are 2 rectangles of side 2x2. </span><br><span class="line">There are 2 rectangles of side 3x1. </span><br><span class="line">There is 1 rectangle of side 3x2. </span><br><span class="line">Total number of rectangles &#x3D; 8 + 5 + 2 + 4 + 2 + 2 + 1 &#x3D; 24.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubmat</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; mat)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-C-Discussion"><a href="#Problem-C-Discussion" class="headerlink" title="Problem_C Discussion:"></a>Problem_C Discussion:</h2><h3 id="category-Miscellaneous-gt-normal-pokemon"><a href="#category-Miscellaneous-gt-normal-pokemon" class="headerlink" title="category: Miscellaneous -&gt; normal pokemon!"></a>category: Miscellaneous -&gt; normal pokemon!</h3><img src="https://qph.fs.quoracdn.net/main-qimg-f035080bc60124c8a64ef1a84b58aa95" alt="Lombre" style="width:200px;"/>
+
+<h3 id="Intuition-2"><a href="#Intuition-2" class="headerlink" title="Intuition:"></a>Intuition:</h3><p>
+Let us begin solving this problem by using 1-D first. If the array is all 1-D, the problem looks very straightforward, since we can do the following
+</p>
+
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">num_submat_1_D</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; mat)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>, ret = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i : mat)&#123;</span><br><span class="line">            len = i == <span class="number">0</span> ? i : len + <span class="number">1</span>;</span><br><span class="line">            ret += len;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<p>
+Therefore, the main idea here is to compute the length block of 1, and increment the result with the current length since another 1 appearing at the end will create another "lenght" number of martices. 
+<br><br>
+Additionally, if we are able to compress the 2-D matrix into 1-D, we then use the algorithm as a black box to solve the problem.
+</p>
+
+
+<p>Example2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: mat &#x3D; [[0,1,1,0],</span><br><span class="line">              [0,1,1,1],</span><br><span class="line">              [1,1,1,0]]</span><br></pre></td></tr></table></figure>
+
+
+<p>
+Consider the matrix in the above, we find out that if we set two scanning row UP and DOWN; we are then able to extract a submatrix from the original matrix, and we are going to compress this submatrix in the following manner.
+<br>
+<br>
+Additionally, if we know that for a specific column i inside the scanning line(submatrix), all the numbers from mat[UP][i], mat[UP+1][i]...mat[DOWN][i] are all 1, we can compress the submatrix with 1 in the 1-D corresponding array since this array denotes the characteristic for the submatrix. Then, let us just code it out! 
+</p>
+
+
+
+
+<h2 id="Problem-C-Solution-O-mnm"><a href="#Problem-C-Solution-O-mnm" class="headerlink" title="Problem_C Solution: O(mnm)"></a>Problem_C Solution: O(m<em>n</em>m)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubmat</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; mat)</span> </span>&#123;   </span><br><span class="line">        <span class="keyword">int</span> ret = <span class="number">0</span>, m = mat.size(), n = mat[<span class="number">0</span>].size();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// scanning line for the upper bound</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> UP = <span class="number">0</span>; UP &lt; m; UP++)&#123;</span><br><span class="line">            <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">compressed_1_D_array</span><span class="params">(n, <span class="number">1</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="comment">// scanning line for the low bound</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> DOWN = UP; DOWN &lt; m; DOWN++)&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                <span class="comment">// compress the submatrix, compressed_1_D[i] = 1 if and only if all the </span></span><br><span class="line">                <span class="comment">// numbers inside the range must be 1</span></span><br><span class="line">                <span class="comment">// and we update the array dynamically</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">                    compressed_1_D_array[i] &amp;= mat[DOWN][i];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> sub_ans = <span class="number">0</span>, len = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// we solve for the 1_D here</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; compressed_1_D_array.size(); j++)&#123;</span><br><span class="line">                    len = compressed_1_D_array[j] == <span class="number">0</span> ? <span class="number">0</span> : len + <span class="number">1</span>;</span><br><span class="line">                    sub_ans += len;</span><br><span class="line">                &#125;</span><br><span class="line">                ret += sub_ans;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<h1 id="Problem-D-Description"><a href="#Problem-D-Description" class="headerlink" title="Problem_D Description:"></a>Problem_D Description:</h1><p>Given a string num representing the digits of a very large integer and an integer k.
+<br>
+You are allowed to swap any two adjacent digits of the integer at most k times.
+<br>
+Return the minimum integer you can obtain also as a string.</p>
+
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: num &#x3D; &quot;4321&quot;, k &#x3D; 4</span><br><span class="line">Output: &quot;1342&quot;</span><br><span class="line">Explanation: The steps to obtain the minimum integer from 4321 with 4 adjacent swaps are shown.</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: num &#x3D; &quot;100&quot;, k &#x3D; 1</span><br><span class="line">Output: &quot;010&quot;</span><br><span class="line">Explanation: It&#39;s ok for the output to have leading zeros, but the input is guaranteed not to have any leading zeros.</span><br></pre></td></tr></table></figure>
+
+<p>Example3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: num &#x3D; &quot;36789&quot;, k &#x3D; 1000</span><br><span class="line">Output: &quot;36789&quot;</span><br><span class="line">Explanation: We can keep the number without any swaps.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">minInteger</span><span class="params">(<span class="built_in">string</span> num, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-D-Discussion"><a href="#Problem-D-Discussion" class="headerlink" title="Problem_D Discussion:"></a>Problem_D Discussion:</h2><h3 id="category-Miscellaneous-gt-normal-pokemon-1"><a href="#category-Miscellaneous-gt-normal-pokemon-1" class="headerlink" title="category: Miscellaneous -&gt; normal pokemon!"></a>category: Miscellaneous -&gt; normal pokemon!</h3><img src="https://i.pinimg.com/236x/45/a5/57/45a55750c94b05a4f51d4555e618d21b---pokemon-type-pokemon.jpg" alt="Lombre" style="width:200px;"/>
+
+<h3 id="Intuition-3"><a href="#Intuition-3" class="headerlink" title="Intuition:"></a>Intuition:</h3><p>
+This is a hard and weird problem. The same algorithm runs TLE if written in cpp, but got pass in Java and Python, which is kinda unfair in the contest. The basic idea is simulating the process of exchanging neighbour and build the new string accordingly, and the runtime is O(n*n) in this case
+</p>
+
+<p>
+Each time, we greedily pick the minimum element possible in the remaining string, and change it to the beginning.
+</p>
+
+
+<h2 id="Problem-D-Solution-O-n-n"><a href="#Problem-D-Solution-O-n-n" class="headerlink" title="Problem_D Solution: O(n*n)"></a>Problem_D Solution: O(n*n)</h2><p><a href="https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/discuss/720101/Java-Bubblesort-16-lines-with-detailed-explanation-easy-to-understand" target="_blank" rel="noopener">credit to FunBam</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">minInteger</span><span class="params">(String num, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] ca = num.toCharArray();</span><br><span class="line">        helper(ca, <span class="number">0</span>, k);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(ca);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(<span class="keyword">char</span>[] ca, <span class="keyword">int</span> I, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k==<span class="number">0</span> || I==ca.length) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> min = ca[I], minIdx = I;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// greedily pick the minimum element in the remaining</span></span><br><span class="line">        <span class="comment">// array</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = I+<span class="number">1</span>; i&lt;Math.min(I+k+<span class="number">1</span>, ca.length); i++)</span><br><span class="line">            <span class="keyword">if</span> (ca[i]&lt;min)&#123;</span><br><span class="line">                min=ca[i];</span><br><span class="line">                minIdx=i;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">char</span> temp = ca[minIdx];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// do the swaping</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = minIdx; i&gt;I; i--) ca[i]=ca[i-<span class="number">1</span>];</span><br><span class="line">        ca[I] = temp;</span><br><span class="line">        helper(ca, I+<span class="number">1</span>, k-(minIdx-I));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/07/04/Leetcode-Weekly-Contest-196-Rewind/">http://haihao-sun.github.io/2020/07/04/Leetcode-Weekly-Contest-196-Rewind/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/tech-Leetcode/"># tech-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/07/05/Leetcode-1027-Longest-Arithmetic-Sequence/">Leetcode-1027-Longest-Arithmetic-Sequence</a>
+            
+            
+            <a class="next" rel="next" href="/2020/07/03/Leetcode-494-Target-Sum/">Leetcode-494-Target-Sum</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

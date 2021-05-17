@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-63/150 | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-63/150</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 24, 2020&nbsp;&nbsp;15:17:31</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src = "https://img4.goodfon.com/wallpaper/nbig/9/8f/pokemon-charizard-krylia-kogti-drakon-letaiushchii-plamia-og.jpg" style="width:200px">
+
+
+
+<h2 id="Problem-Description-124-Binary-Tree-Maximum-Path-Sum-61-150-3-5-5"><a href="#Problem-Description-124-Binary-Tree-Maximum-Path-Sum-61-150-3-5-5" class="headerlink" title="Problem Description 124. Binary Tree Maximum Path Sum | 61/150  | 3.5/5"></a>Problem Description <a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener">124. Binary Tree Maximum Path Sum</a> | 61/150  | 3.5/5</h2><p>
+Given a non-empty binary tree, find the maximum path sum.
+
+<p>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.</p>
+</p>
+
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3]</span><br><span class="line"></span><br><span class="line">       1</span><br><span class="line">      &#x2F; \</span><br><span class="line">     2   3</span><br><span class="line"></span><br><span class="line">Output: 6</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-124-Binary-Tree-Maximum-Path-Sum-61-150-3-5-5"><a href="#Problem-Solution-124-Binary-Tree-Maximum-Path-Sum-61-150-3-5-5" class="headerlink" title="Problem Solution 124. Binary Tree Maximum Path Sum | 61/150  | 3.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener">124. Binary Tree Maximum Path Sum</a> | 61/150  | 3.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxPathSum</span><span class="params">(self, root: TreeNode)</span> -&gt; int:</span></span><br><span class="line"></span><br><span class="line">        global_ret = -float(<span class="string">'inf'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root)</span>:</span></span><br><span class="line">            <span class="keyword">nonlocal</span> global_ret</span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">            left_ret = helper(root.left)</span><br><span class="line">            right_ret = helper(root.right)</span><br><span class="line">            global_ret = max(global_ret, root.val + left_ret + right_ret)</span><br><span class="line">            <span class="keyword">return</span> max(<span class="number">0</span>, root.val + max(right_ret, left_ret))</span><br><span class="line">        </span><br><span class="line">        helper(root)</span><br><span class="line">        <span class="keyword">return</span> global_ret</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Problem-Caution-124-Binary-Tree-Maximum-Path-Sum-61-150-3-5-5"><a href="#Problem-Caution-124-Binary-Tree-Maximum-Path-Sum-61-150-3-5-5" class="headerlink" title="Problem Caution 124. Binary Tree Maximum Path Sum | 61/150  | 3.5/5"></a>Problem Caution <a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener">124. Binary Tree Maximum Path Sum</a> | 61/150  | 3.5/5</h2><ul>
+<li>DFS Solution!</li>
+<li>For the return value that we will pass to the caller, it should be the max(0, root.val + max(right_ret, left_ret))</li>
+<li>However, for the retur n</li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Description-125-Valid-Palindrome-62-150-3-5-5"><a href="#Problem-Description-125-Valid-Palindrome-62-150-3-5-5" class="headerlink" title="Problem Description 125. Valid Palindrome | 62/150  | 3.5/5"></a>Problem Description <a href="https://leetcode.com/problems/valid-palindrome/" target="_blank" rel="noopener">125. Valid Palindrome</a> | 62/150  | 3.5/5</h2><p>
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+<p>Note: For the purpose of this problem, we define empty string as valid palindrome.</p>
+</p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;A man, a plan, a canal: Panama&quot;</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem-Solution-125-Valid-Palindrome-62-150-3-5-5"><a href="#Problem-Solution-125-Valid-Palindrome-62-150-3-5-5" class="headerlink" title="Problem Solution 125. Valid Palindrome | 62/150  | 3.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/valid-palindrome/" target="_blank" rel="noopener">125. Valid Palindrome</a> | 62/150  | 3.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, s: str)</span> -&gt; bool:</span></span><br><span class="line">        s = s.lower()</span><br><span class="line">        left_ptr, right_ptr = <span class="number">0</span>, len(s) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span>(right_ptr &gt; left_ptr):</span><br><span class="line">            <span class="keyword">if</span> (s[left_ptr].isalnum()) == <span class="literal">False</span>:</span><br><span class="line">                left_ptr += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> (s[right_ptr].isalnum()) == <span class="literal">False</span>:</span><br><span class="line">                right_ptr -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> s[left_ptr] != s[right_ptr]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left_ptr += <span class="number">1</span></span><br><span class="line">                right_ptr -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Caution-125-Valid-Palindrome-62-150-3-5-5"><a href="#Problem-Caution-125-Valid-Palindrome-62-150-3-5-5" class="headerlink" title="Problem Caution 125. Valid Palindrome | 62/150  | 3.5/5"></a>Problem Caution <a href="https://leetcode.com/problems/valid-palindrome/" target="_blank" rel="noopener">125. Valid Palindrome</a> | 62/150  | 3.5/5</h2><ul>
+<li>str.isalnum() checks if this is an alphanumberic char/str</li>
+<li>O(n)</li>
+</ul>
+<h2 id="Problem-Description-127-Word-Ladder-63-150-2-5-5"><a href="#Problem-Description-127-Word-Ladder-63-150-2-5-5" class="headerlink" title="Problem Description 127. Word Ladder | 63/150  | 2.5/5"></a>Problem Description <a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">127. Word Ladder</a> | 63/150  | 2.5/5</h2><p>
+Given two words (beginWord and endWord), and a dictionary's word list, find the length of shortest transformation sequence from beginWord to endWord, such that:
+
+<p>Only one letter can be changed at a time.<br>Each transformed word must exist in the word list.<br>Note:</p>
+<p>Return 0 if there is no such transformation sequence.<br>All words have the same length.<br>All words contain only lowercase alphabetic characters.<br>You may assume no duplicates in the word list.<br>You may assume beginWord and endWord are non-empty and are not the same.</p>
+</p>
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">beginWord &#x3D; &quot;hit&quot;,</span><br><span class="line">endWord &#x3D; &quot;cog&quot;,</span><br><span class="line">wordList &#x3D; [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</span><br><span class="line"></span><br><span class="line">Output: 5</span><br><span class="line"></span><br><span class="line">Explanation: As one shortest transformation is &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;,</span><br><span class="line">return its length 5.</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Solution-127-Word-Ladder-63-150-2-5-5"><a href="#Problem-Solution-127-Word-Ladder-63-150-2-5-5" class="headerlink" title="Problem Solution 127. Word Ladder | 63/150  | 2.5/5"></a>Problem Solution <a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">127. Word Ladder</a> | 63/150  | 2.5/5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord: str, endWord: str, wordList: List[str])</span> -&gt; int:</span></span><br><span class="line">        word_set = set(wordList)</span><br><span class="line">        charSet = &#123;w <span class="keyword">for</span> word <span class="keyword">in</span> wordList <span class="keyword">for</span> w <span class="keyword">in</span> word&#125;</span><br><span class="line">        q = deque([[beginWord, <span class="number">1</span>]])</span><br><span class="line">        <span class="keyword">while</span>(len(q)):</span><br><span class="line">            cur = q.popleft()</span><br><span class="line">            word, length = cur[<span class="number">0</span>], cur[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> word == endWord:</span><br><span class="line">                <span class="keyword">return</span> length</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">                <span class="keyword">for</span> c <span class="keyword">in</span> charSet:</span><br><span class="line">                    next_s = word[:i] + c + word[i + <span class="number">1</span>:]</span><br><span class="line">                    <span class="keyword">if</span> next_s <span class="keyword">in</span> word_set:</span><br><span class="line">                        word_set.remove(next_s)</span><br><span class="line">                        q.append([next_s, length + <span class="number">1</span>])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Caution-127-Word-Ladder-63-150-2-5-5"><a href="#Problem-Caution-127-Word-Ladder-63-150-2-5-5" class="headerlink" title="Problem Caution 127. Word Ladder | 63/150  | 2.5/5"></a>Problem Caution <a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">127. Word Ladder</a> | 63/150  | 2.5/5</h2><ul>
+<li>Clearly, this is a BFS question, and the wrong way to build graph would cause TLE</li>
+<li>Solution1: check transistions between two strings: it takes O(n * n * k) since n is the length of wordList, and k is the length of the word in wordlist</li>
+<li>Solution2: generate all the possible next_string and check, it takes O(n * 26 * k) since hashset takes O(1) to check existence</li>
+<li>O(n * 26 * k) -&gt; for everystring the worst case to check is 26 * k. and there are at most n strings to visit</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/24/Leetcode-Training-63-150/">http://haihao-sun.github.io/2020/09/24/Leetcode-Training-63-150/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode/"># training-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/25/Leetcode-Training-66-150/">Leetcode-Training-66/150</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/23/Leetcode-Training-60-150/">Leetcode-Training-60/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

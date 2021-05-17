@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetocde_322_Coin_Change | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetocde_322_Coin_Change</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 29, 2020&nbsp;&nbsp;9:56:25</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/DP/">DP</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://img.rankedboost.com/wp-content/plugins/ice/pokemon/Lotad-Pokemon-Go.png" alt="Lombre" style="width:200px;"/>
+
+<p><a href="https://leetcode.com/problems/coin-change/" target="_blank" rel="noopener">link to leetcode_322_coin_change</a></p>
+<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h2><p>You are given coins of different denominations and a total amount of money amount. Write a function  
+to compute the fewest number of coins that you need to make up that amount. If that amount of money  
+cannot be made up by any combination of the coins, return -1.</p>
+
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: coins &#x3D; [1, 2, 5], amount &#x3D; 11</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: 11 &#x3D; 5 + 5 + 1</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: coins &#x3D; [2], amount &#x3D; 3</span><br><span class="line">Output: -1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Discussion"><a href="#Problem-Discussion" class="headerlink" title="Problem Discussion:"></a>Problem Discussion:</h2><h3 id="category-DP-Dynamic-Programming-gt-water-pokemon"><a href="#category-DP-Dynamic-Programming-gt-water-pokemon" class="headerlink" title="category: DP(Dynamic Programming) -&gt; water pokemon!"></a>category: DP(Dynamic Programming) -&gt; water pokemon!</h3><h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition:"></a>Intuition:</h3><p>This problem looks extremely similar to <a href="https://en.wikipedia.org/wiki/Knapsack_problem#:~:text=The%20knapsack%20problem%20is%20a,is%20as%20large%20as%20possible." target="_blank" rel="noopener">Knapsack problem</a><br><br>We can fill the dp array manually for a simple case.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input &#x3D; [1, 2, 5]. Amount &#x3D; 11</span><br><span class="line"></span><br><span class="line">step1: dp&#x3D;[INT_MAX&#x2F;2]*11</span><br><span class="line">step2: dp[0] &#x3D; 0 -&gt; we need 0 coin to make up 0</span><br><span class="line">step3: update the dp[i] using the previous dp[j] where j &lt; i</span><br><span class="line">        dp[k] &#x3D; min(dp[k - 1] + 1, dp[k - 2] + 1, dp[k - 5] + 1) </span><br><span class="line">        since we can make up amount k, by using one coin with value 1, 2, or 5, combining </span><br><span class="line">        with dp[k-1], dp[k-2], dp[k-5] respectively</span><br><span class="line"></span><br><span class="line">Typically, we dynamically update the 1-D dp array to get the solution</span><br></pre></td></tr></table></figure>
+
+<h4 id="step1-Initialize-the-1-D-dp-array-and-try-to-fill-the-following-cell-based-on-previous-ones"><a href="#step1-Initialize-the-1-D-dp-array-and-try-to-fill-the-following-cell-based-on-previous-ones" class="headerlink" title="step1: Initialize the 1-D dp array and try to fill the following cell based on previous ones"></a>step1: Initialize the 1-D dp array and try to fill the following cell based on previous ones</h4><p>In order to solve dp[i], we can simply try all possible coin whose value is k, and k must be 
+smaller than or equal to i, then dp[i] can be 1 + dp[i-k]. Also notice that we need to have 
+the smallest amount of coins, therefore, we need to pick the min among all the possible 
+"strategies" described above.</p>
+
+<p>some pseudocode for updating the dp array index i</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j in <span class="number">0</span> -&gt; len(coins):</span><br><span class="line"></span><br><span class="line">    <span class="comment">// we can use coins[j] if and only if the target that we want to reach is bigger than</span></span><br><span class="line">    <span class="comment">// or equal to the current coin that we are considering</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= coins[j]</span><br><span class="line">        dp[j] = min(dp[j], <span class="number">1</span> + dp[ j - coins[j]] )</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="step2-Handle-edge-case-where-the-solution-is-1-no-possible-combinations"><a href="#step2-Handle-edge-case-where-the-solution-is-1-no-possible-combinations" class="headerlink" title="step2: Handle edge case where the solution is -1 (no possible combinations)"></a>step2: Handle edge case where the solution is -1 (no possible combinations)</h4><p>We observe that if there is no possible combinations which sum up to amount, we essenttially
+end up with the dp[amount] = INT_MAX / 2, which means that we never update such value.</p>
+
+<p>Therefore, after filling the dp array, if we end up with INT_MAX / 2, we can simply return -1
+for this edge case.</p>
+
+<p>For DP, the code is fairly short to write.</p>
+<h2 id="Problem-Solution"><a href="#Problem-Solution" class="headerlink" title="Problem Solution"></a>Problem Solution</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;coins, <span class="keyword">int</span> amount)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(amount + <span class="number">1</span>, INT_MAX / <span class="number">2</span>)</span></span>;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; amount + <span class="number">1</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = coins.size() <span class="number">-1</span> ; j &gt;= <span class="number">0</span>; j--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(coins[j] &lt;= i)</span><br><span class="line">                    dp[i] = min(dp[i], dp[i-coins[j]] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[amount] == INT_MAX / <span class="number">2</span> ? <span class="number">-1</span> : dp[amount];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Another-great-solution-using-DFS-with-pruning"><a href="#Another-great-solution-using-DFS-with-pruning" class="headerlink" title="Another great solution using DFS with pruning"></a>Another great solution using DFS with pruning</h2><h3 id="category-Searching-Depth-first-search-gt-grass-pokemon"><a href="#category-Searching-Depth-first-search-gt-grass-pokemon" class="headerlink" title="category: Searching(Depth-first search) -&gt; grass pokemon!"></a>category: Searching(Depth-first search) -&gt; grass pokemon!</h3><h3 id="Intuition-1"><a href="#Intuition-1" class="headerlink" title="Intuition:"></a>Intuition:</h3><p>Insteaed of generating the table, we can also greedily do DFS to generate the solution 
+Just imagine that if you have infinite number of coins with value 1, 2, 5, and you want 
+to make up with an amount 11. Intutively, I would try to use as many 5 as possible since 
+that coin has a higher value, and if we use coins with higher value, we end up with a less 
+nuber of coins.</p>
+
+<p>Since the focus of discussing this problem mostly lies on dynamic programming, and this DFS 
+solution with greedy and pruning is not very universal. Here I attached my implementation in 
+Python3 with the feature of higher order function and nonlocal. I personally really like this 
+solution since it links the greedy with DFS, and also beats DP in this case. Anyways, this is 
+a good practice to write code in searching! </p>
+## Problem Solution II
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">coinChange</span><span class="params">(self, coins: List[int], amount: int)</span> -&gt; int:</span></span><br><span class="line"></span><br><span class="line">        coins.sort(key=<span class="keyword">lambda</span> x: -x)</span><br><span class="line">        ans = amount + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(target, idx, operation)</span>:</span></span><br><span class="line">            <span class="keyword">nonlocal</span> ans</span><br><span class="line">            <span class="keyword">if</span> idx == len(coins) - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">if</span> target % coins[idx] == <span class="number">0</span>:</span><br><span class="line">                    ans = min(ans, operation + target // coins[idx])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(target // coins[idx], <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">                    <span class="keyword">if</span> i + operation &gt; ans:</span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">                    dfs(target - i * coins[idx], idx + <span class="number">1</span>, operation + i)</span><br><span class="line">        dfs(amount, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span> <span class="keyword">if</span> ans == amount + <span class="number">1</span> <span class="keyword">else</span> ans</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<p>Therefore, based on the fact that this problem can be solved by both DP and Searching, I pick 
+Lombre whose type includes both water and grass simultaneously! </p>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/06/29/Leetcode-322-Coin-Change/">http://haihao-sun.github.io/2020/06/29/Leetcode-322-Coin-Change/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/tech-Leetcode/"># tech-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/06/30/Leetcode-518-Coin-Change-II/">Leetcode-518-Coin-Change-II</a>
+            
+            
+            <a class="next" rel="next" href="/2020/06/28/How-to-watch-youtube-without-annoying-ADs/">How to watch youtube without annoying ADs?</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

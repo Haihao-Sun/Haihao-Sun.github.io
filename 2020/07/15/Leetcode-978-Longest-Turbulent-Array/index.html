@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-978-Longest-Turbulent-Array | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-978-Longest-Turbulent-Array</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 15, 2020&nbsp;&nbsp;23:11:33</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/DP/">DP</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a href="https://leetcode.com/problems/longest-turbulent-subarray/" target="_blank" rel="noopener">Leetcode-978-Longest-Turbulent-Array</a></p>
+<img src="https://pokemon.gishan.cc/static/i/p/wartortle.jpg" style="width:200px;">
+
+
+<p>
+
+<p>A subarray A[i], A[i+1], …, A[j] of A is said to be turbulent if and only if:</p>
+<blockquote>
+<ul>
+<li>For i &lt;= k &lt; j, A[k] &gt; A[k+1] when k is odd, and A[k] &lt; A[k+1] when k is even;</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>OR, for i &lt;= k &lt; j, A[k] &gt; A[k+1] when k is even, and A[k] &lt; A[k+1] when k is odd.</li>
+</ul>
+</blockquote>
+<p>That is, the subarray is turbulent if the comparison sign flips between each adjacent pair of elements in the subarray.</p>
+<p>Return the length of a maximum size turbulent subarray of A.</p>
+<BR>
+Input size:
+
+
+<blockquote>
+<ul>
+<li>1 &lt;= A.length &lt;= 40000</li>
+<li>0 &lt;= A[i] &lt;= 10^9</li>
+</ul>
+</blockquote>
+</p>
+
+
+<br>
+
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [9,4,2,10,7,8,8,1,9]</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: (A[1] &gt; A[2] &lt; A[3] &gt; A[4] &lt; A[5])</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxTurbulenceSize</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Problem-Discussion"><a href="#Problem-Discussion" class="headerlink" title="Problem Discussion:"></a>Problem Discussion:</h2><p>
+Notice that the input size is O(40000), which is the hint for O(n) algorithm.
+
+<p>Clearly, we can do this by using DP! </p>
+</p>
+
+
+<h2 id="Define-DP-state"><a href="#Define-DP-state" class="headerlink" title="Define DP state :"></a>Define DP state :</h2><p>
+dp_next_increase[i] means we need an increasing next
+<br>
+dp_next_decrease[i] means we need a decreasing element next
+
+</p>
+
+
+<h2 id="Seek-for-DP-transition-function"><a href="#Seek-for-DP-transition-function" class="headerlink" title="Seek for DP transition function:"></a>Seek for DP transition function:</h2><p>
+
+<p>If the current A[i] &gt; A[i-1], we can append the A[i] to the previous decreasing array, and seek for another smaller element for the next.</p>
+<p>Reversely for the situation where A[i] &lt; A[i-1].</p>
+<p>Further discussion: we can do dimension reduction since it only depends on the previous element.</p>
+</p>
+
+
+
+
+
+
+
+<h2 id="Problem-Solution"><a href="#Problem-Solution" class="headerlink" title="Problem Solution:"></a>Problem Solution:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxTurbulenceSize</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(A.size() &lt;= <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> A.size();</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dp_next_increase</span><span class="params">(A.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dp_next_decrease</span><span class="params">(A.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        dp_next_decrease[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        dp_next_increase[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(A[i] &gt; A[i<span class="number">-1</span>])&#123;</span><br><span class="line">                dp_next_decrease[i] = dp_next_increase[i<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">                dp_next_increase[i] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(A[i] &lt; A[i<span class="number">-1</span>])&#123;</span><br><span class="line">                dp_next_increase[i] = dp_next_decrease[i<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">                dp_next_decrease[i] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                dp_next_increase[i] = <span class="number">1</span>;</span><br><span class="line">                dp_next_decrease[i] = <span class="number">1</span>;</span><br><span class="line">            &#125;   </span><br><span class="line">            res = max(res, max( dp_next_decrease[i],  dp_next_increase[i]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/07/15/Leetcode-978-Longest-Turbulent-Array/">http://haihao-sun.github.io/2020/07/15/Leetcode-978-Longest-Turbulent-Array/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/tech-Leetcode/"># tech-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/07/16/Leetcode-91-Decode-Ways/">Leetcode-91-Decode-Ways</a>
+            
+            
+            <a class="next" rel="next" href="/2020/07/14/Leetcode-1155-Number-of-Dice-Rolls-With-Target-Sum/">Leetcode-1155-Number-of-Dice-Rolls-With-Target-Sum</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

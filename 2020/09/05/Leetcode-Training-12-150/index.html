@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Leetcode-Training-12/150 | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leetcode-Training-12/150</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 5, 2020&nbsp;&nbsp;17:14:26</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Training/">Training</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://www.imore.com/sites/imore.com/files/styles/large/public/field/image/2019/12/pokemon-633-deino.png" style="width:200px" alt="danshoulong">
+
+
+
+
+<h4 id="Problem-Description-10-150"><a href="#Problem-Description-10-150" class="headerlink" title="Problem Description 10/150"></a>Problem Description 10/150</h4><p><a href="https://leetcode.com/problems/roman-to-integer/" target="_blank" rel="noopener">13. Roman to Integer</a></p>
+<p>
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Symbol       Value</span><br><span class="line">I             1</span><br><span class="line">V             5</span><br><span class="line">X             10</span><br><span class="line">L             50</span><br><span class="line">C             100</span><br><span class="line">D             500</span><br><span class="line">M             1000</span><br></pre></td></tr></table></figure>
+
+<p>For example, two is written as II in Roman numeral, just two one’s added together. Twelve is written as, XII, which is simply X + II. The number twenty seven is written as XXVII, which is XX + V + II.</p>
+<p>Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:</p>
+<ul>
+<li>I can be placed before V (5) and X (10) to make 4 and 9. </li>
+<li>X can be placed before L (50) and C (100) to make 40 and 90. </li>
+<li>C can be placed before D (500) and M (1000) to make 400 and 900.</li>
+</ul>
+<p>Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.</p>
+</p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;MCMXCIV&quot;</span><br><span class="line">Output: 1994</span><br><span class="line">Explanation: M &#x3D; 1000, CM &#x3D; 900, XC &#x3D; 90 and IV &#x3D; 4.</span><br></pre></td></tr></table></figure>
+
+<h4 id="Problem-Solution-10-150"><a href="#Problem-Solution-10-150" class="headerlink" title="Problem Solution 10/150"></a>Problem Solution 10/150</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> relation[<span class="number">26</span>];</span><br><span class="line">        relation[<span class="string">'I'</span> - <span class="string">'A'</span>] = <span class="number">1</span>;</span><br><span class="line">        relation[<span class="string">'V'</span> - <span class="string">'A'</span>] = <span class="number">5</span>;</span><br><span class="line">        relation[<span class="string">'X'</span> - <span class="string">'A'</span>] = <span class="number">10</span>;</span><br><span class="line">        relation[<span class="string">'L'</span> - <span class="string">'A'</span>] = <span class="number">50</span>;</span><br><span class="line">        relation[<span class="string">'C'</span> - <span class="string">'A'</span>] = <span class="number">100</span>;</span><br><span class="line">        relation[<span class="string">'D'</span> - <span class="string">'A'</span>] = <span class="number">500</span>;</span><br><span class="line">        relation[<span class="string">'M'</span> - <span class="string">'A'</span>] = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> pre = <span class="number">0</span>, ret = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; digits;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">char</span> cur_char = s[i];</span><br><span class="line">            <span class="keyword">int</span> cur_value = relation[cur_char - <span class="string">'A'</span>];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">0</span>)&#123;</span><br><span class="line">                pre = cur_value;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// we need to reverse the sign according to the </span></span><br><span class="line">                <span class="comment">// problem description</span></span><br><span class="line">                <span class="keyword">if</span>(cur_value &gt; pre)&#123;</span><br><span class="line">                    pre = -pre;</span><br><span class="line">                &#125;</span><br><span class="line">                ret += pre;</span><br><span class="line">                pre = cur_value;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        ret += pre;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> accumulate(digits.begin(), digits.end(), ret);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="Caution-10-150"><a href="#Caution-10-150" class="headerlink" title="Caution 10/150"></a>Caution 10/150</h4><ul>
+<li>Space Reduction</li>
+<li>Logic to Simplify the code</li>
+<li>Implementation O(n)</li>
+</ul>
+<p><a href="https://leetcode.com/problems/longest-common-prefix/" target="_blank" rel="noopener">14. Longest Common Prefix</a></p>
+<h4 id="Problem-Description-11-150"><a href="#Problem-Description-11-150" class="headerlink" title="Problem Description 11/150"></a>Problem Description 11/150</h4><p>
+Write a function to find the longest common prefix string amongst an array of strings.
+
+<p>If there is no common prefix, return an empty string “”.</p>
+</p>
+
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span><br><span class="line">Output: &quot;fl&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Problem-Solution-11-150"><a href="#Problem-Solution-11-150" class="headerlink" title="Problem Solution 11/150"></a>Problem Solution 11/150</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestCommonPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> shortest_idx = <span class="number">0</span>, shortest_length = INT_MAX;</span><br><span class="line">        <span class="keyword">if</span>(strs.size() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(strs[i].length() &lt; shortest_length)&#123;</span><br><span class="line">                shortest_idx = i;</span><br><span class="line">                shortest_length = strs[i].length();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// do the binary search to find the longest common prefix</span></span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, h = shortest_length;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// true, true, true, true, true, false, false, false, false 型, 找到最后一个true</span></span><br><span class="line">        <span class="comment">// 最后情况，true, true, false -&gt; true, false</span></span><br><span class="line">        <span class="comment">// -&gt; mid = true,  then false, fasle</span></span><br><span class="line">        <span class="comment">// -&gt; mid = false, then high = mid - 1 是最后一个true, low = mid 是第一个false</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="comment">// false, false, false, false, true, true, true, true, true 型, 找到第一个true</span></span><br><span class="line">        <span class="comment">// 最后情况 false, true</span></span><br><span class="line">        <span class="comment">// -&gt; mid = false, then high = mid + 1</span></span><br><span class="line">        <span class="comment">// -&gt; mid = true, then low = mid - 1 是最后一个false, high是第一个true</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(h &gt;= l)&#123;</span><br><span class="line">            <span class="keyword">int</span> m = (h - l) / <span class="number">2</span> + l;</span><br><span class="line">            <span class="built_in">string</span> prefix = strs[shortest_idx].substr(<span class="number">0</span>, m);</span><br><span class="line">            <span class="keyword">bool</span> is_valid = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.size(); i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!start_with(prefix, strs[i]))&#123;</span><br><span class="line">                    is_valid = <span class="literal">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(is_valid)&#123;</span><br><span class="line">                l = m + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                h = m - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> strs.size() == <span class="number">1</span> ? strs[<span class="number">0</span>] : strs[shortest_idx].substr(<span class="number">0</span>, h);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">start_with</span><span class="params">(<span class="built_in">string</span> &amp;prefix, <span class="built_in">string</span>&amp; s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prefix.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] != prefix[i])</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Caution-11-150"><a href="#Caution-11-150" class="headerlink" title="Caution 11/150"></a>Caution 11/150</h4><ul>
+<li>Potentially use Trie to solve this prefix problem</li>
+<li>String, Binary Search, Trie Data Structure</li>
+<li>Binary Search O(log n * n)</li>
+</ul>
+<h4 id="Problem-Description-12-150"><a href="#Problem-Description-12-150" class="headerlink" title="Problem Description 12/150"></a>Problem Description 12/150</h4><p>]
+Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+
+<p>Notice that the solution set must not contain duplicate triplets.</p>
+</p>
+
+<p>Example1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [-1,0,1,2,-1,-4]</span><br><span class="line">Output: [[-1,-1,2],[-1,0,1]]</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Problem-Solution-12-150"><a href="#Problem-Solution-12-150" class="headerlink" title="Problem Solution 12/150"></a>Problem Solution 12/150</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">threeSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; his;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ret;</span><br><span class="line">        <span class="keyword">if</span>(nums.size() &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> ret;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; s;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i : nums)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(s.find(i) == s.end())&#123;</span><br><span class="line">                s[i] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                s[i] = min(<span class="number">3</span>, s[i] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        nums.clear();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> it : s)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; it.second; ++i)&#123;</span><br><span class="line">                nums.push_back(it.first);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size() - <span class="number">2</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> target = <span class="number">0</span> - nums[i];</span><br><span class="line"></span><br><span class="line">            <span class="comment">// we can only use the number after index i</span></span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; cur_ret = twoSum(nums, target, i);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cur_ret.size(); j++)&#123;</span><br><span class="line">                cur_ret[j].push_back(nums[i]);</span><br><span class="line">                sort(cur_ret[j].begin(), cur_ret[j].end());</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cur_ret.size(); j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(his.find(cur_ret[j]) == his.end())&#123;</span><br><span class="line">                    his.insert(cur_ret[j]);</span><br><span class="line">                    ret.push_back(cur_ret[j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">twoSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target, <span class="keyword">int</span> idx)</span></span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ret;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = idx + <span class="number">1</span>; i &lt; nums.size(); i++)&#123;</span><br><span class="line">            m[target - nums[i]] = i; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = idx + <span class="number">1</span>; i &lt; nums.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(m.find(nums[i]) != m.end() &amp;&amp; m[nums[i]] != i)&#123;</span><br><span class="line">                <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cur_ret&#123;nums[i], target - nums[i]&#125;;</span><br><span class="line">                ret.push_back(cur_ret);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Caution-12-150"><a href="#Caution-12-150" class="headerlink" title="Caution 12/150"></a>Caution 12/150</h4><ul>
+<li>TWO SUM + LOOP + REMOVE DUPLICATES</li>
+<li>O(n ^ 2)</li>
+</ul>
+<h4 id="Master’s-Solution-12-150"><a href="#Master’s-Solution-12-150" class="headerlink" title="Master’s Solution 12/150"></a>Master’s Solution 12/150</h4><p>Runtime: 80 ms, faster than 90.69% of C++ online submissions for 3Sum.<br>Memory Usage: 21.5 MB, less than 41.43% of C++ online submissions for 3Sum.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">threeSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ret;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// we have processed this number as start before</span></span><br><span class="line">            <span class="keyword">if</span>(i &amp;&amp; nums[i] == nums[i<span class="number">-1</span>])</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> l = i + <span class="number">1</span>, r = nums.size() - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(r &gt; l)&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">int</span> c_s = nums[i] + nums[l] + nums[r];</span><br><span class="line"></span><br><span class="line">                <span class="comment">// current sum is too big, we pick a smaller right pointer</span></span><br><span class="line">                <span class="keyword">if</span>(c_s &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                    r -= <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(c_s &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                    l += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; c_ret &#123;nums[i], nums[l], nums[r]&#125;;</span><br><span class="line">                    ret.push_back(c_ret);</span><br><span class="line">                    <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[l] == nums[l + <span class="number">1</span>]) ++l;</span><br><span class="line">                    <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[r] == nums[r - <span class="number">1</span>]) --r;</span><br><span class="line">                    ++l, --r;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/05/Leetcode-Training-12-150/">http://haihao-sun.github.io/2020/09/05/Leetcode-Training-12-150/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/training-Leetcode/"># training-Leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/06/Leetcode-Training-15-150/">Leetcode-Training-15/150</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/04/Leetcode-Training-9-150/">Leetcode-Training-9/150</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

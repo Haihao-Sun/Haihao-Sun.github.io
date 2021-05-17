@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Haihao Sun">
+
+
+
+
+
+<title>Interview_Prep_CPP_I | Haihao Sun&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Haihao&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Haihao&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Interview_Prep_CPP_I</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Haihao Sun</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 6, 2020&nbsp;&nbsp;20:13:42</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/CPP/">CPP</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSPwN6p1NoMDZLT7-DEZegjntkanbo3IjsCyA&usqp=CAU" style="width:200px">
+
+<h2 id="1-Reference-and-Pointer"><a href="#1-Reference-and-Pointer" class="headerlink" title="1. Reference and Pointer"></a>1. Reference and Pointer</h2><ul>
+<li>reference cannot be empty, but pointer  could potentially be nullptr</li>
+<li>reference cannot be reassigned to another value, but we can use pointer to point to another object</li>
+<li>destroy, create reference will not call the destructor and constructor</li>
+<li>*ptr ≈ ref</li>
+</ul>
+<p>Pointer has its value, and memmory address (double pointer)</p>
+<p><img src=
+"https://image-cdn.hypb.st/https%3A%2F%2Fhk.hypebeast.com%2Ffiles%2F2019%2F04%2Fhttps___hypebeast.com_image_2019_04_naruto-ramen-ichiraku-official-1-1.jpg?q=75&w=800&cbr=1&fit=max" ></p>
+<h2 id="2-Virtual-and-Pure-Virtual-Function"><a href="#2-Virtual-and-Pure-Virtual-Function" class="headerlink" title="2. Virtual and Pure Virtual Function"></a>2. Virtual and Pure Virtual Function</h2><h4 id="Do-we-need-to-override-pure-virtual-function-in-cpp"><a href="#Do-we-need-to-override-pure-virtual-function-in-cpp" class="headerlink" title="Do we need to override (pure) virtual function in cpp?"></a>Do we need to override (pure) virtual function in cpp?</h4><ul>
+<li>We can override Virtual Function, and we can also choose not to, but if we do not override the virtual function, the child class will use the virtual function in the parent class.</li>
+<li>We HAVE TO override pure virtual function, and we cannot create object for class that has pure virtual class since this function is not defined in this class.</li>
+</ul>
+<h4 id="2-1-How-to-decide-which-function-to-call-in-polymorphism"><a href="#2-1-How-to-decide-which-function-to-call-in-polymorphism" class="headerlink" title="2.1 How to decide which function to call in polymorphism"></a>2.1 How to decide which function to call in polymorphism</h4><ul>
+<li>pointer type decides the usage of normal function</li>
+<li>object type decides the usage of virtual function</li>
+</ul>
+<h4 id="2-2-What-is-the-memory-layout-for-virtual-function-and-pure-virtual-function"><a href="#2-2-What-is-the-memory-layout-for-virtual-function-and-pure-virtual-function" class="headerlink" title="2.2 What is the memory layout for virtual function and pure virtual function?"></a>2.2 What is the memory layout for virtual function and pure virtual function?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    void foo()&#123;&#125;            </span><br><span class="line">    void bar()&#123;&#125;</span><br><span class="line">    int val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>text area : foo(), bar()     -&gt; this part is owned by all objects in this class<br>stack:      val              -&gt; this part is private to that specific object</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class B&#123;</span><br><span class="line">    virtual void foo()&#123;&#125;</span><br><span class="line">    void bar()&#123;&#125;</span><br><span class="line">    int val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>text area: bar()       foo()  -&gt; they are not stored in the same neighbouring location<br>stack:     val, vptr          -&gt; vptr points to a virtual table which contains a function pointer pointing to foo() that we override<br>global:    *(foo())</p>
+<h4 id="2-3-Can-we-make-constructor-to-be-virtual-What-about-making-destructor-to-be-virtual"><a href="#2-3-Can-we-make-constructor-to-be-virtual-What-about-making-destructor-to-be-virtual" class="headerlink" title="2.3 Can we make constructor to be virtual? What about making destructor to be virtual?"></a>2.3 Can we make constructor to be virtual? What about making destructor to be virtual?</h4><ul>
+<li>We cannot make constructor to be virtual: constructor creates the instance, but if we do not have instance field vptr, we can not find the virtual constructor</li>
+<li>We might recommend making destructor, since different children class will have distinct instance field, therefore it would be great to implement destructor that is specifically useful for that child class.</li>
+</ul>
+<img src="https://upload.wikimedia.org/wikipedia/zh/a/a9/%E5%A4%A7%E5%92%8C.png">
+
+<h2 id="3-Const"><a href="#3-Const" class="headerlink" title="3. Const"></a>3. Const</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const int a &#x3D; 42;      we cannnot reassign a to be another value such as 41</span><br><span class="line">int const b &#x3D; 42;      same as the one above;</span><br></pre></td></tr></table></figure>
+
+<p>int a = 10;</p>
+<ul>
+<li>situation 1: we cannot change a, but we can reasign the pointer if const is at the left of *<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const int * ptr1 &#x3D; &amp;a;</span><br><span class="line">int const * ptr1 &#x3D; &amp;a;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li>situation 2: we can change a, but cannot reassign the pointer if const is at the right of *</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int * const ptr3 &#x3D; &amp;a;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Situation 3: we cannot do both if there are two consts</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const int * const ptr4 &#x3D; &amp;a;</span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn2.ettoday.net/images/1359/d1359278.jpg">
+
+<h2 id="4-Smart-Pointer"><a href="#4-Smart-Pointer" class="headerlink" title="4.Smart Pointer"></a>4.Smart Pointer</h2><h4 id="What-is-smart-pointer-and-why-we-need-it"><a href="#What-is-smart-pointer-and-why-we-need-it" class="headerlink" title="What is smart pointer, and why we need it?"></a>What is smart pointer, and why we need it?</h4><p>Oftentimes, it is very common to forget to delete the object that we just new before. Additionally, there might be errors or exception in the function that we call after use <strong>new</strong> keyword. Therefore, we can use smart  pointer to simulate the garbage collector in Java! </p>
+<p>Just Make your C++ look like Java.</p>
+<h4 id="Four-Common-Smart-Pointer"><a href="#Four-Common-Smart-Pointer" class="headerlink" title="Four Common Smart Pointer"></a>Four Common Smart Pointer</h4><ul>
+<li>unique_ptr: cannot be copied</li>
+<li>shared_ptr: use Reference counting to manage the garbage, can be copied</li>
+<li>weak_ptr : solve the problem for cycle dependecy</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Haihao Sun</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://haihao-sun.github.io/2020/09/06/Interview-Prep-CPP-I/">http://haihao-sun.github.io/2020/09/06/Interview-Prep-CPP-I/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Trust the process.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Interview-Prep/"># Interview Prep</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/07/Leetcode-Training-18-150/">Leetcode-Training-18/150</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/06/Leetcode-1305-All-Numbers-In-Binary-Tree/">Leetcode-1305-All-Numbers-In-Binary-Tree</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Haihao Sun | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
